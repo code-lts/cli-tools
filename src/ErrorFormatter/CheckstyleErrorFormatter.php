@@ -29,12 +29,15 @@ namespace CodeLts\CliTools\ErrorFormatter;
 
 use CodeLts\CliTools\AnalysisResult;
 use CodeLts\CliTools\Output;
-use CodeLts\CliTools\RelativePathHelper;
+use CodeLts\CliTools\File\RelativePathHelper;
 
 class CheckstyleErrorFormatter implements ErrorFormatter
 {
 
-	private RelativePathHelper $relativePathHelper;
+	/**
+	 * @var RelativePathHelper
+	 */
+	private $relativePathHelper;
 
 	public function __construct(RelativePathHelper $relativePathHelper)
 	{
@@ -126,12 +129,9 @@ class CheckstyleErrorFormatter implements ErrorFormatter
 	{
 		$files = [];
 
-		/** @var \PHPStan\Analyser\Error $fileSpecificError */
+		/** @var \CodeLts\CliTools\Error $fileSpecificError */
 		foreach ($analysisResult->getFileSpecificErrors() as $fileSpecificError) {
-			$absolutePath = $fileSpecificError->getFilePath();
-			if ($fileSpecificError->getTraitFilePath() !== null) {
-				$absolutePath = $fileSpecificError->getTraitFilePath();
-			}
+			$absolutePath = $fileSpecificError->getFile();
 			$relativeFilePath = $this->relativePathHelper->getRelativePath(
 				$absolutePath
 			);

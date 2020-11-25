@@ -29,13 +29,16 @@ namespace CodeLts\CliTools\ErrorFormatter;
 
 use CodeLts\CliTools\AnalysisResult;
 use CodeLts\CliTools\Output;
-use CodeLts\CliTools\RelativePathHelper;
+use CodeLts\CliTools\File\RelativePathHelper;
 use function sprintf;
 
 class JunitErrorFormatter implements ErrorFormatter
 {
 
-	private \CodeLts\CliTools\RelativePathHelper $relativePathHelper;
+	/**
+	 * @var RelativePathHelper
+	 */
+	private $relativePathHelper;
 
 	public function __construct(RelativePathHelper $relativePathHelper)
 	{

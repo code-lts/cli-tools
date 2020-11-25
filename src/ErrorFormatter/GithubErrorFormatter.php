@@ -29,7 +29,7 @@ namespace CodeLts\CliTools\ErrorFormatter;
 
 use CodeLts\CliTools\AnalysisResult;
 use CodeLts\CliTools\Output;
-use CodeLts\CliTools\RelativePathHelper;
+use CodeLts\CliTools\File\RelativePathHelper;
 
 /**
  * Allow errors to be reported in pull-requests diff when run in a GitHub Action
@@ -38,7 +38,10 @@ use CodeLts\CliTools\RelativePathHelper;
 class GithubErrorFormatter implements ErrorFormatter
 {
 
-	private RelativePathHelper $relativePathHelper;
+	/**
+	 * @var RelativePathHelper
+	 */
+	private $relativePathHelper;
 
 	private TableErrorFormatter $tableErrorformatter;
 

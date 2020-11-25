@@ -30,7 +30,7 @@ namespace CodeLts\CliTools\ErrorFormatter;
 use CodeLts\CliTools\AnalyseCommand;
 use CodeLts\CliTools\AnalysisResult;
 use CodeLts\CliTools\Output;
-use CodeLts\CliTools\RelativePathHelper;
+use CodeLts\CliTools\File\RelativePathHelper;
 
 class TableErrorFormatter implements ErrorFormatter
 {

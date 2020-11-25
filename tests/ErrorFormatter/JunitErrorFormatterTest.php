@@ -25,11 +25,12 @@
  */
 declare(strict_types = 1);
 
-namespace CodeLts\CliTools\ErrorFormatter\ErrorFormatter;
+namespace CodeLts\CliTools\Tests\ErrorFormatter;
 
+use CodeLts\CliTools\ErrorFormatter\JunitErrorFormatter;
 use DOMDocument;
 use Generator;
-use CodeLts\CliTools\SimpleRelativePathHelper;
+use CodeLts\CliTools\File\SimpleRelativePathHelper;
 use CodeLts\CliTools\Tests\ErrorFormatterTestCase;
 
 class JunitErrorFormatterTest extends ErrorFormatterTestCase

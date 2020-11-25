@@ -25,8 +25,9 @@
  */
 declare(strict_types = 1);
 
-namespace CodeLts\CliTools\ErrorFormatter\ErrorFormatter;
+namespace CodeLts\CliTools\Tests\ErrorFormatter;
 
+use CodeLts\CliTools\ErrorFormatter\JsonErrorFormatter;
 use CodeLts\CliTools\Tests\ErrorFormatterTestCase;
 
 class JsonErrorFormatterTest extends ErrorFormatterTestCase

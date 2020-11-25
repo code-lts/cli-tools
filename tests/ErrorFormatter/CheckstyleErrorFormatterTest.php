@@ -25,11 +25,12 @@
  */
 declare(strict_types = 1);
 
-namespace CodeLts\CliTools\ErrorFormatter\ErrorFormatter;
+namespace CodeLts\CliTools\Tests\ErrorFormatter;
 
-use PHPStan\Analyser\Error;
+use CodeLts\CliTools\Error;
 use CodeLts\CliTools\AnalysisResult;
-use CodeLts\CliTools\SimpleRelativePathHelper;
+use CodeLts\CliTools\ErrorFormatter\CheckstyleErrorFormatter;
+use CodeLts\CliTools\File\SimpleRelativePathHelper;
 use CodeLts\CliTools\Tests\ErrorFormatterTestCase;
 
 class CheckstyleErrorFormatterTest extends ErrorFormatterTestCase
@@ -168,11 +169,8 @@ class CheckstyleErrorFormatterTest extends ErrorFormatterTestCase
 		$formatter = new CheckstyleErrorFormatter(new SimpleRelativePathHelper(__DIR__));
 		$error = new Error(
 			'Foo',
-			__DIR__ . '/FooTrait.php (in context of class Foo)',
-			5,
-			true,
-			__DIR__ . '/Foo.php',
-			__DIR__ . '/FooTrait.php'
+			__DIR__ . '/FooTrait.php',
+			5
 		);
 		$formatter->formatErrors(new AnalysisResult(
 			[$error],

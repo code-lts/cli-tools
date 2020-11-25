@@ -26,10 +26,11 @@
 
 declare(strict_types = 1);
 
-namespace CodeLts\CliTools\ErrorFormatter\ErrorFormatter;
+namespace CodeLts\CliTools\Tests\ErrorFormatter;
 
-use CodeLts\CliTools\FuzzyRelativePathHelper;
-use CodeLts\CliTools\NullRelativePathHelper;
+use CodeLts\CliTools\ErrorFormatter\TeamcityErrorFormatter;
+use CodeLts\CliTools\File\FuzzyRelativePathHelper;
+use CodeLts\CliTools\File\NullRelativePathHelper;
 use CodeLts\CliTools\Tests\ErrorFormatterTestCase;
 
 class TeamcityErrorFormatterTest extends ErrorFormatterTestCase
@@ -50,7 +51,7 @@ class TeamcityErrorFormatterTest extends ErrorFormatterTestCase
 			1,
 			1,
 			0,
-			'##teamcity[inspectionType id=\'cli-tools\' name=\'cli-tools\' category=\'cli-tools\' description=\'cli-tools Inspection\']
+			'##teamcity[inspectionType id=\'cli-tools\' name=\'cli-tools\' category=\'cli-tools\' description=\'cli-tools Errors\']
 ##teamcity[inspection typeId=\'cli-tools\' message=\'Foo\' file=\'folder with unicode 😃/file name with "spaces" and unicode 😃.php\' line=\'4\' SEVERITY=\'ERROR\' ignorable=\'1\' tip=\'\']
 ',
 		];
@@ -60,7 +61,7 @@ class TeamcityErrorFormatterTest extends ErrorFormatterTestCase
 			1,
 			0,
 			1,
-			'##teamcity[inspectionType id=\'cli-tools\' name=\'cli-tools\' category=\'cli-tools\' description=\'cli-tools Inspection\']
+			'##teamcity[inspectionType id=\'cli-tools\' name=\'cli-tools\' category=\'cli-tools\' description=\'cli-tools Errors\']
 ##teamcity[inspection typeId=\'cli-tools\' message=\'first generic error\' file=\'.\' SEVERITY=\'ERROR\']
 ',
 		];
@@ -70,7 +71,7 @@ class TeamcityErrorFormatterTest extends ErrorFormatterTestCase
 			1,
 			4,
 			0,
-			'##teamcity[inspectionType id=\'cli-tools\' name=\'cli-tools\' category=\'cli-tools\' description=\'cli-tools Inspection\']
+			'##teamcity[inspectionType id=\'cli-tools\' name=\'cli-tools\' category=\'cli-tools\' description=\'cli-tools Errors\']
 ##teamcity[inspection typeId=\'cli-tools\' message=\'Bar||nBar2\' file=\'folder with unicode 😃/file name with "spaces" and unicode 😃.php\' line=\'2\' SEVERITY=\'ERROR\' ignorable=\'1\' tip=\'\']
 ##teamcity[inspection typeId=\'cli-tools\' message=\'Foo\' file=\'folder with unicode 😃/file name with "spaces" and unicode 😃.php\' line=\'4\' SEVERITY=\'ERROR\' ignorable=\'1\' tip=\'\']
 ##teamcity[inspection typeId=\'cli-tools\' message=\'Foo\' file=\'foo.php\' line=\'1\' SEVERITY=\'ERROR\' ignorable=\'1\' tip=\'\']
@@ -83,7 +84,7 @@ class TeamcityErrorFormatterTest extends ErrorFormatterTestCase
 			1,
 			0,
 			2,
-			'##teamcity[inspectionType id=\'cli-tools\' name=\'cli-tools\' category=\'cli-tools\' description=\'cli-tools Inspection\']
+			'##teamcity[inspectionType id=\'cli-tools\' name=\'cli-tools\' category=\'cli-tools\' description=\'cli-tools Errors\']
 ##teamcity[inspection typeId=\'cli-tools\' message=\'first generic error\' file=\'.\' SEVERITY=\'ERROR\']
 ##teamcity[inspection typeId=\'cli-tools\' message=\'second generic error\' file=\'.\' SEVERITY=\'ERROR\']
 ',
@@ -94,7 +95,7 @@ class TeamcityErrorFormatterTest extends ErrorFormatterTestCase
 			1,
 			4,
 			2,
-			'##teamcity[inspectionType id=\'cli-tools\' name=\'cli-tools\' category=\'cli-tools\' description=\'cli-tools Inspection\']
+			'##teamcity[inspectionType id=\'cli-tools\' name=\'cli-tools\' category=\'cli-tools\' description=\'cli-tools Errors\']
 ##teamcity[inspection typeId=\'cli-tools\' message=\'Bar||nBar2\' file=\'folder with unicode 😃/file name with "spaces" and unicode 😃.php\' line=\'2\' SEVERITY=\'ERROR\' ignorable=\'1\' tip=\'\']
 ##teamcity[inspection typeId=\'cli-tools\' message=\'Foo\' file=\'folder with unicode 😃/file name with "spaces" and unicode 😃.php\' line=\'4\' SEVERITY=\'ERROR\' ignorable=\'1\' tip=\'\']
 ##teamcity[inspection typeId=\'cli-tools\' message=\'Foo\' file=\'foo.php\' line=\'1\' SEVERITY=\'ERROR\' ignorable=\'1\' tip=\'\']

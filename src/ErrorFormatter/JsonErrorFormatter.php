@@ -34,7 +34,10 @@ use CodeLts\CliTools\Output;
 class JsonErrorFormatter implements ErrorFormatter
 {
 
-	private bool $pretty;
+	/**
+	 * @var bool
+	 */
+	private $pretty;
 
 	public function __construct(bool $pretty)
 	{

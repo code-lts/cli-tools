@@ -25,10 +25,11 @@
  */
 declare(strict_types = 1);
 
-namespace CodeLts\CliTools\ErrorFormatter\ErrorFormatter;
+namespace CodeLts\CliTools\Tests\ErrorFormatter;
 
-use CodeLts\CliTools\SimpleRelativePathHelper;
+use CodeLts\CliTools\File\SimpleRelativePathHelper;
 use CodeLts\CliTools\Tests\ErrorFormatterTestCase;
+use CodeLts\CliTools\ErrorFormatter\GitlabErrorFormatter;
 
 class GitlabFormatterTest extends ErrorFormatterTestCase
 {

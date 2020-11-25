@@ -27,7 +27,7 @@ declare(strict_types = 1);
 
 namespace CodeLts\CliTools\Tests;
 
-use PHPStan\Analyser\Error;
+use CodeLts\CliTools\Error;
 use CodeLts\CliTools\AnalysisResult;
 use CodeLts\CliTools\ErrorsConsoleStyle;
 use CodeLts\CliTools\Output;
@@ -42,9 +42,11 @@ abstract class ErrorFormatterTestCase extends \CodeLts\CliTools\Tests\AbstractTe
 
 	protected const DIRECTORY_PATH = '/data/folder/with space/and unicode 😃/project';
 
-	private ?StreamOutput $outputStream = null;
+	/** @var StreamOutput|null */
+	private $outputStream = null;
 
-	private ?Output $output = null;
+	/** @var Output|null */
+	private $output = null;
 
 	private function getOutputStream(): StreamOutput
 	{

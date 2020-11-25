@@ -25,10 +25,11 @@
  */
 declare(strict_types = 1);
 
-namespace CodeLts\CliTools\ErrorFormatter\ErrorFormatter;
+namespace CodeLts\CliTools\Tests\ErrorFormatter;
 
-use CodeLts\CliTools\FuzzyRelativePathHelper;
-use CodeLts\CliTools\NullRelativePathHelper;
+use CodeLts\CliTools\ErrorFormatter\TableErrorFormatter;
+use CodeLts\CliTools\File\FuzzyRelativePathHelper;
+use CodeLts\CliTools\File\NullRelativePathHelper;
 use CodeLts\CliTools\Tests\ErrorFormatterTestCase;
 
 class TableErrorFormatterTest extends ErrorFormatterTestCase

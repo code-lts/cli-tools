@@ -30,7 +30,7 @@ namespace CodeLts\CliTools\ErrorFormatter;
 use Nette\Utils\Json;
 use CodeLts\CliTools\AnalysisResult;
 use CodeLts\CliTools\Output;
-use CodeLts\CliTools\RelativePathHelper;
+use CodeLts\CliTools\File\RelativePathHelper;
 
 /**
  * @see https://docs.gitlab.com/ee/user/project/merge_requests/code_quality.html#implementing-a-custom-tool
@@ -38,7 +38,10 @@ use CodeLts\CliTools\RelativePathHelper;
 class GitlabErrorFormatter implements ErrorFormatter
 {
 
-	private RelativePathHelper $relativePathHelper;
+	/**
+	 * @var RelativePathHelper
+	 */
+	private $relativePathHelper;
 
 	public function __construct(RelativePathHelper $relativePathHelper)
 	{
