@@ -44,29 +44,19 @@ class AnalysisResult
 	/** @var string[] */
 	private $warnings;
 
-	/** @var bool */
-	private $defaultLevelUsed;
-
-	/** @var bool */
-	private $savedResultCache;
-
 	/**
 	 * @param \CodeLts\CliTools\Error[] $fileSpecificErrors
 	 * @param string[] $notFileSpecificErrors
 	 * @param string[] $internalErrors
 	 * @param string[] $warnings
-	 * @param bool $defaultLevelUsed
 	 * @param string|null $projectConfigFile
-	 * @param bool $savedResultCache
 	 */
 	public function __construct(
 		array $fileSpecificErrors,
 		array $notFileSpecificErrors,
 		array $internalErrors,
 		array $warnings,
-		bool $defaultLevelUsed,
-		?string $projectConfigFile,
-		bool $savedResultCache
+		?string $projectConfigFile
 	)
 	{
 		usort(
@@ -88,9 +78,7 @@ class AnalysisResult
 		$this->notFileSpecificErrors = $notFileSpecificErrors;
 		$this->internalErrors = $internalErrors;
 		$this->warnings = $warnings;
-		$this->defaultLevelUsed = $defaultLevelUsed;
 		$this->projectConfigFile = $projectConfigFile;
-		$this->savedResultCache = $savedResultCache;
 	}
 
 	public function hasErrors(): bool
@@ -140,19 +128,9 @@ class AnalysisResult
 		return count($this->warnings) > 0;
 	}
 
-	public function isDefaultLevelUsed(): bool
-	{
-		return $this->defaultLevelUsed;
-	}
-
 	public function hasInternalErrors(): bool
 	{
 		return count($this->internalErrors) > 0;
-	}
-
-	public function isResultCacheSaved(): bool
-	{
-		return $this->savedResultCache;
 	}
 
 }
