@@ -37,14 +37,17 @@ use Symfony\Component\Console\Style\StyleInterface;
 class SymfonyStyle implements OutputStyle
 {
 
-	private \Symfony\Component\Console\Style\StyleInterface $symfonyStyle;
+	/**
+	 * @var StyleInterface
+	 */
+	private $symfonyStyle;
 
 	public function __construct(StyleInterface $symfonyStyle)
 	{
 		$this->symfonyStyle = $symfonyStyle;
 	}
 
-	public function getSymfonyStyle(): \Symfony\Component\Console\Style\StyleInterface
+	public function getSymfonyStyle(): StyleInterface
 	{
 		return $this->symfonyStyle;
 	}

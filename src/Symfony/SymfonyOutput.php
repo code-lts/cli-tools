@@ -38,9 +38,15 @@ use Symfony\Component\Console\Output\OutputInterface;
 class SymfonyOutput implements Output
 {
 
-	private \Symfony\Component\Console\Output\OutputInterface $symfonyOutput;
+	/**
+	 * @var OutputInterface
+	 */
+	private $symfonyOutput;
 
-	private OutputStyle $style;
+	/**
+	 * @var OutputStyle
+	 */
+	private $style;
 
 	public function __construct(
 		OutputInterface $symfonyOutput,

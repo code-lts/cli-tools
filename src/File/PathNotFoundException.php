@@ -30,7 +30,10 @@ namespace CodeLts\CliTools\File;
 class PathNotFoundException extends \Exception
 {
 
-	private string $path;
+	/**
+	 * @var string
+	 */
+	private $path;
 
 	public function __construct(string $path)
 	{

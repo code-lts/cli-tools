@@ -30,7 +30,10 @@ namespace CodeLts\CliTools\File;
 class SimpleRelativePathHelper implements RelativePathHelper
 {
 
-	private string $currentWorkingDirectory;
+	/**
+	 * @var string
+	 */
+	private $currentWorkingDirectory;
 
 	public function __construct(string $currentWorkingDirectory)
 	{

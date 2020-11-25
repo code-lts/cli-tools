@@ -43,7 +43,10 @@ class GithubErrorFormatter implements ErrorFormatter
 	 */
 	private $relativePathHelper;
 
-	private TableErrorFormatter $tableErrorformatter;
+	/**
+	 * @var TableErrorFormatter
+	 */
+	private $tableErrorformatter;
 
 	public function __construct(
 		RelativePathHelper $relativePathHelper,

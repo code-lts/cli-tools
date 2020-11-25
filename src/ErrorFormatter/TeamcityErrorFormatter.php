@@ -37,7 +37,10 @@ use CodeLts\CliTools\File\RelativePathHelper;
 class TeamcityErrorFormatter implements ErrorFormatter
 {
 
-	private RelativePathHelper $relativePathHelper;
+	/**
+	 * @var RelativePathHelper
+	 */
+	private $relativePathHelper;
 
 	public function __construct(RelativePathHelper $relativePathHelper)
 	{

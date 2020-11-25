@@ -37,11 +37,14 @@ class ErrorsConsoleStyle extends \Symfony\Component\Console\Style\SymfonyStyle
 
 	public const OPTION_NO_PROGRESS = 'no-progress';
 
-	private bool $showProgress;
+	/** @var bool */
+	private $showProgress;
 
-	private \Symfony\Component\Console\Helper\ProgressBar $progressBar;
+	/** @var ProgressBar */
+	private $progressBar;
 
-	private ?bool $isCiDetected = null;
+	/** @var bool|null */
+	private $isCiDetected = null;
 
 	public function __construct(InputInterface $input, OutputInterface $output)
 	{

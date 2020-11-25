@@ -31,13 +31,13 @@ class AnalyserResult
 {
 
 	/** @var \CodeLts\CliTools\Error[] */
-	private array $unorderedErrors;
+	private $unorderedErrors;
 
 	/** @var \CodeLts\CliTools\Error[] */
-	private array $errors;
+	private $errors;
 
 	/** @var string[] */
-	private array $internalErrors;
+	private $internalErrors;
 
 	/**
 	 * @param \CodeLts\CliTools\Error[] $errors

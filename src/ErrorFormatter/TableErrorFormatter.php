@@ -35,9 +35,15 @@ use CodeLts\CliTools\File\RelativePathHelper;
 class TableErrorFormatter implements ErrorFormatter
 {
 
-	private RelativePathHelper $relativePathHelper;
+	/**
+	 * @var RelativePathHelper
+	 */
+	private $relativePathHelper;
 
-	private bool $showTipsOfTheDay;
+	/**
+	 * @var bool
+	 */
+	private $showTipsOfTheDay;
 
 	public function __construct(
 		RelativePathHelper $relativePathHelper,

@@ -33,7 +33,10 @@ use function str_replace;
 class ParentDirectoryRelativePathHelper implements RelativePathHelper
 {
 
-	private string $parentDirectory;
+	/**
+	 * @var string
+	 */
+	private $parentDirectory;
 
 	public function __construct(string $parentDirectory)
 	{

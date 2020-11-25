@@ -33,22 +33,25 @@ class AnalysisResult
 {
 
 	/** @var \CodeLts\CliTools\Error[] sorted by their file name, line number and message */
-	private array $fileSpecificErrors;
+	private $fileSpecificErrors;
 
 	/** @var string[] */
-	private array $notFileSpecificErrors;
+	private $notFileSpecificErrors;
 
 	/** @var string[] */
-	private array $internalErrors;
+	private $internalErrors;
 
 	/** @var string[] */
-	private array $warnings;
+	private $warnings;
 
-	private bool $defaultLevelUsed;
+	/** @var bool */
+	private $defaultLevelUsed;
 
-	private ?string $projectConfigFile;
+	/** @var string|null */
+	private $projectConfigFile;
 
-	private bool $savedResultCache;
+	/** @var bool */
+	private $savedResultCache;
 
 	/**
 	 * @param \CodeLts\CliTools\Error[] $fileSpecificErrors

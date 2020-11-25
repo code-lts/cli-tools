@@ -30,11 +30,20 @@ namespace CodeLts\CliTools\File;
 class FuzzyRelativePathHelper implements RelativePathHelper
 {
 
-	private RelativePathHelper $fallbackRelativePathHelper;
+	/**
+	 * @var RelativePathHelper
+	 */
+	private $fallbackRelativePathHelper;
 
-	private string $directorySeparator;
+	/**
+	 * @var string
+	 */
+	private $directorySeparator;
 
-	private ?string $pathToTrim = null;
+	/**
+	 * @var string|null
+	 */
+	private $pathToTrim = null;
 
 	/**
 	 * @param RelativePathHelper $fallbackRelativePathHelper
