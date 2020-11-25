@@ -83,7 +83,7 @@ class TeamcityErrorFormatter implements ErrorFormatter
 				'typeId' => 'cli-tools',
 				'message' => $notFileSpecificError,
 				// the file is required
-				'file' => $analysisResult->getProjectConfigFile() !== null ? $this->relativePathHelper->getRelativePath($analysisResult->getProjectConfigFile()) : '.',
+				'file' => '.',
 				'SEVERITY' => 'ERROR',
 			]);
 		}
@@ -93,7 +93,7 @@ class TeamcityErrorFormatter implements ErrorFormatter
 				'typeId' => 'cli-tools',
 				'message' => $warning,
 				// the file is required
-				'file' => $analysisResult->getProjectConfigFile() !== null ? $this->relativePathHelper->getRelativePath($analysisResult->getProjectConfigFile()) : '.',
+				'file' => '.',
 				'SEVERITY' => 'WARNING',
 			]);
 		}

@@ -40,18 +40,11 @@ class TableErrorFormatter implements ErrorFormatter
 	 */
 	private $relativePathHelper;
 
-	/**
-	 * @var bool
-	 */
-	private $showTipsOfTheDay;
-
 	public function __construct(
-		RelativePathHelper $relativePathHelper,
-		bool $showTipsOfTheDay
+		RelativePathHelper $relativePathHelper
 	)
 	{
 		$this->relativePathHelper = $relativePathHelper;
-		$this->showTipsOfTheDay = $showTipsOfTheDay;
 	}
 
 	public function formatErrors(
@@ -59,26 +52,11 @@ class TableErrorFormatter implements ErrorFormatter
 		Output $output
 	): int
 	{
-		$projectConfigFile = 'cli-tools.neon';
-		if ($analysisResult->getProjectConfigFile() !== null) {
-			$projectConfigFile = $this->relativePathHelper->getRelativePath($analysisResult->getProjectConfigFile());
-		}
 
 		$style = $output->getStyle();
 
 		if (!$analysisResult->hasErrors() && !$analysisResult->hasWarnings()) {
 			$style->success('No errors');
-			if ($this->showTipsOfTheDay) {
-				if ($analysisResult->isDefaultLevelUsed()) {
-					$output->writeLineFormatted('💡 Tip of the Day:');
-					$output->writeLineFormatted(sprintf(
-						"cli-tools is performing only the most basic checks.\nYou can pass a higher rule level through the <fg=cyan>--%s</> option\n(the default and current level is %d) to analyse code more thoroughly.",
-						AnalyseCommand::OPTION_LEVEL,
-						AnalyseCommand::DEFAULT_LEVEL
-					));
-					$output->writeLineFormatted('');
-				}
-			}
 
 			return 0;
 		}
@@ -99,7 +77,6 @@ class TableErrorFormatter implements ErrorFormatter
 				$message = $error->getMessage();
 				if ($error->getTip() !== null) {
 					$tip = $error->getTip();
-					$tip = str_replace('%configurationFile%', $projectConfigFile, $tip);
 					$message .= "\n💡 " . $tip;
 				}
 				$rows[] = [

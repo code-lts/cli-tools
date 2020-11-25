@@ -47,9 +47,6 @@ class AnalysisResult
 	/** @var bool */
 	private $defaultLevelUsed;
 
-	/** @var string|null */
-	private $projectConfigFile;
-
 	/** @var bool */
 	private $savedResultCache;
 
@@ -146,11 +143,6 @@ class AnalysisResult
 	public function isDefaultLevelUsed(): bool
 	{
 		return $this->defaultLevelUsed;
-	}
-
-	public function getProjectConfigFile(): ?string
-	{
-		return $this->projectConfigFile;
 	}
 
 	public function hasInternalErrors(): bool
