@@ -56,15 +56,15 @@ class TeamcityErrorFormatter implements ErrorFormatter
 		}
 
 		$result .= $this->createTeamcityLine('inspectionType', [
-			'id' => 'phpstan',
-			'name' => 'phpstan',
-			'category' => 'phpstan',
-			'description' => 'phpstan Inspection',
+			'id' => 'cli-tools',
+			'name' => 'cli-tools',
+			'category' => 'cli-tools',
+			'description' => 'cli-tools Errors',
 		]);
 
 		foreach ($fileSpecificErrors as $fileSpecificError) {
 			$result .= $this->createTeamcityLine('inspection', [
-				'typeId' => 'phpstan',
+				'typeId' => 'cli-tools',
 				'message' => $fileSpecificError->getMessage(),
 				'file' => $this->relativePathHelper->getRelativePath($fileSpecificError->getFile()),
 				'line' => $fileSpecificError->getLine(),
@@ -77,7 +77,7 @@ class TeamcityErrorFormatter implements ErrorFormatter
 
 		foreach ($notFileSpecificErrors as $notFileSpecificError) {
 			$result .= $this->createTeamcityLine('inspection', [
-				'typeId' => 'phpstan',
+				'typeId' => 'cli-tools',
 				'message' => $notFileSpecificError,
 				// the file is required
 				'file' => $analysisResult->getProjectConfigFile() !== null ? $this->relativePathHelper->getRelativePath($analysisResult->getProjectConfigFile()) : '.',
@@ -87,7 +87,7 @@ class TeamcityErrorFormatter implements ErrorFormatter
 
 		foreach ($warnings as $warning) {
 			$result .= $this->createTeamcityLine('inspection', [
-				'typeId' => 'phpstan',
+				'typeId' => 'cli-tools',
 				'message' => $warning,
 				// the file is required
 				'file' => $analysisResult->getProjectConfigFile() !== null ? $this->relativePathHelper->getRelativePath($analysisResult->getProjectConfigFile()) : '.',

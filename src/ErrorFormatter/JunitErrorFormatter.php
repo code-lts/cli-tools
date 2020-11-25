@@ -49,7 +49,7 @@ class JunitErrorFormatter implements ErrorFormatter
 	{
 		$result = '<?xml version="1.0" encoding="UTF-8"?>';
 		$result .= sprintf(
-			'<testsuite failures="%d" name="phpstan" tests="%d" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/junit-team/junit5/r5.5.1/platform-tests/src/test/resources/jenkins-junit.xsd">',
+			'<testsuite failures="%d" name="cli-tools" tests="%d" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/junit-team/junit5/r5.5.1/platform-tests/src/test/resources/jenkins-junit.xsd">',
 			$analysisResult->getTotalErrorsCount(),
 			$analysisResult->getTotalErrorsCount()
 		);
@@ -72,7 +72,7 @@ class JunitErrorFormatter implements ErrorFormatter
 		}
 
 		if (!$analysisResult->hasErrors()) {
-			$result .= $this->createTestCase('phpstan', '');
+			$result .= $this->createTestCase('cli-tools', '');
 		}
 
 		$result .= '</testsuite>';

@@ -25,7 +25,7 @@
  */
 declare(strict_types = 1);
 
-namespace CodeLts\CliTools\ErrorFormatter\Tests;
+namespace CodeLts\CliTools\Tests;
 
 use PHPStan\Analyser\Error;
 use CodeLts\CliTools\AnalysisResult;
@@ -33,10 +33,11 @@ use CodeLts\CliTools\ErrorsConsoleStyle;
 use CodeLts\CliTools\Output;
 use CodeLts\CliTools\Symfony\SymfonyOutput;
 use CodeLts\CliTools\Symfony\SymfonyStyle;
+use Exception;
 use Symfony\Component\Console\Input\StringInput;
 use Symfony\Component\Console\Output\StreamOutput;
 
-abstract class ErrorFormatterTestCase extends \CodeLts\CliTools\Tests\TestCase
+abstract class ErrorFormatterTestCase extends \CodeLts\CliTools\Tests\AbstractTestCase
 {
 
 	protected const DIRECTORY_PATH = '/data/folder/with space/and unicode 😃/project';
@@ -53,7 +54,7 @@ abstract class ErrorFormatterTestCase extends \CodeLts\CliTools\Tests\TestCase
 		if ($this->outputStream === null) {
 			$resource = fopen('php://memory', 'w', false);
 			if ($resource === false) {
-				throw new \PHPStan\ShouldNotHappenException();
+				throw new Exception('This should not happen');
 			}
 			$this->outputStream = new StreamOutput($resource);
 		}
@@ -77,7 +78,7 @@ abstract class ErrorFormatterTestCase extends \CodeLts\CliTools\Tests\TestCase
 
 		$contents = stream_get_contents($this->getOutputStream()->getStream());
 		if ($contents === false) {
-			throw new \PHPStan\ShouldNotHappenException();
+			throw new Exception('This should not happen');
 		}
 
 		return $this->rtrimMultiline($contents);

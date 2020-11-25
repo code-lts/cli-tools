@@ -53,7 +53,7 @@ class TableErrorFormatter implements ErrorFormatter
 		Output $output
 	): int
 	{
-		$projectConfigFile = 'phpstan.neon';
+		$projectConfigFile = 'cli-tools.neon';
 		if ($analysisResult->getProjectConfigFile() !== null) {
 			$projectConfigFile = $this->relativePathHelper->getRelativePath($analysisResult->getProjectConfigFile());
 		}
@@ -66,7 +66,7 @@ class TableErrorFormatter implements ErrorFormatter
 				if ($analysisResult->isDefaultLevelUsed()) {
 					$output->writeLineFormatted('💡 Tip of the Day:');
 					$output->writeLineFormatted(sprintf(
-						"PHPStan is performing only the most basic checks.\nYou can pass a higher rule level through the <fg=cyan>--%s</> option\n(the default and current level is %d) to analyse code more thoroughly.",
+						"cli-tools is performing only the most basic checks.\nYou can pass a higher rule level through the <fg=cyan>--%s</> option\n(the default and current level is %d) to analyse code more thoroughly.",
 						AnalyseCommand::OPTION_LEVEL,
 						AnalyseCommand::DEFAULT_LEVEL
 					));
