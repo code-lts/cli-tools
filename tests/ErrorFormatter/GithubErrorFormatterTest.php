@@ -189,7 +189,7 @@ class GithubErrorFormatterTest extends ErrorFormatterTestCase
 		string $expected
 	): void
 	{
-		$relativePathHelper = new FuzzyRelativePathHelper(new NullRelativePathHelper(), self::DIRECTORY_PATH, [], '/');
+		$relativePathHelper = new FuzzyRelativePathHelper(new NullRelativePathHelper(), self::DIRECTORY_PATH);
 		$formatter = new GithubErrorFormatter(
 			$relativePathHelper,
 			new TableErrorFormatter($relativePathHelper, false)

@@ -48,22 +48,15 @@ class FuzzyRelativePathHelper implements RelativePathHelper
 	/**
 	 * @param RelativePathHelper $fallbackRelativePathHelper
 	 * @param string $currentWorkingDirectory
-	 * @param string[] $analysedPaths
-	 * @param string|null $directorySeparator
 	 */
 	public function __construct(
 		RelativePathHelper $fallbackRelativePathHelper,
-		string $currentWorkingDirectory,
-		array $analysedPaths,
-		?string $directorySeparator = null
+		string $currentWorkingDirectory
 	)
 	{
 		$this->fallbackRelativePathHelper = $fallbackRelativePathHelper;
-		if ($directorySeparator === null) {
-			$directorySeparator = DIRECTORY_SEPARATOR;
-		}
 
-		$this->directorySeparator = $directorySeparator;
+		$this->directorySeparator = DIRECTORY_SEPARATOR;
 		$pathBeginning = null;
 		$pathToTrimArray = null;
 		$trimBeginning = static function (string $path): array {
@@ -89,40 +82,14 @@ class FuzzyRelativePathHelper implements RelativePathHelper
 			[$pathBeginning, $currentWorkingDirectory] = $trimBeginning($currentWorkingDirectory);
 
 			/** @var string[] $pathToTrimArray */
-			$pathToTrimArray = explode($directorySeparator, $currentWorkingDirectory);
-		}
-		foreach ($analysedPaths as $pathNumber => $path) {
-			[$tempPathBeginning, $path] = $trimBeginning($path);
-
-			/** @var string[] $pathArray */
-			$pathArray = explode($directorySeparator, $path);
-			$pathTempParts = [];
-			foreach ($pathArray as $i => $pathPart) {
-				if (\Nette\Utils\Strings::endsWith($pathPart, '.php')) {
-					continue;
-				}
-				if (!isset($pathToTrimArray[$i])) {
-					if ($pathNumber !== 0) {
-						$pathToTrimArray = $pathTempParts;
-						continue 2;
-					}
-				} elseif ($pathToTrimArray[$i] !== $pathPart) {
-					$pathToTrimArray = $pathTempParts;
-					continue 2;
-				}
-
-				$pathTempParts[] = $pathPart;
-			}
-
-			$pathBeginning = $tempPathBeginning;
-			$pathToTrimArray = $pathTempParts;
+			$pathToTrimArray = explode($this->directorySeparator, $currentWorkingDirectory);
 		}
 
 		if ($pathToTrimArray === null || count($pathToTrimArray) === 0) {
 			return;
 		}
 
-		$pathToTrim = $pathBeginning . implode($directorySeparator, $pathToTrimArray);
+		$pathToTrim = $pathBeginning . implode($this->directorySeparator, $pathToTrimArray);
 		$realPathToTrim = realpath($pathToTrim);
 		if ($realPathToTrim !== false) {
 			$pathToTrim = $realPathToTrim;
