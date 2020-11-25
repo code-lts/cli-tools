@@ -27,7 +27,7 @@ declare(strict_types = 1);
 
 namespace CodeLts\CliTools\File;
 
-class CouldNotWriteFileException extends \PHPStan\AnalysedCodeException
+class CouldNotWriteFileException extends \Exception
 {
 
 	public function __construct(string $fileName, string $error)

@@ -25,11 +25,11 @@
  */
 declare(strict_types = 1);
 
-namespace PHPStan\Command\ErrorFormatter;
+namespace CodeLts\CliTools\ErrorFormatter;
 
-use PHPStan\Command\AnalysisResult;
-use PHPStan\Command\Output;
-use PHPStan\File\RelativePathHelper;
+use CodeLts\CliTools\AnalysisResult;
+use CodeLts\CliTools\Output;
+use CodeLts\CliTools\RelativePathHelper;
 
 /**
  * Allow errors to be reported in pull-requests diff when run in a GitHub Action

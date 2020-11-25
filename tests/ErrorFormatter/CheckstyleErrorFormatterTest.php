@@ -25,12 +25,12 @@
  */
 declare(strict_types = 1);
 
-namespace PHPStan\Command\ErrorFormatter;
+namespace CodeLts\CliTools\ErrorFormatter\ErrorFormatter;
 
 use PHPStan\Analyser\Error;
-use PHPStan\Command\AnalysisResult;
-use PHPStan\File\SimpleRelativePathHelper;
-use PHPStan\Testing\ErrorFormatterTestCase;
+use CodeLts\CliTools\AnalysisResult;
+use CodeLts\CliTools\SimpleRelativePathHelper;
+use CodeLts\CliTools\Tests\ErrorFormatterTestCase;
 
 class CheckstyleErrorFormatterTest extends ErrorFormatterTestCase
 {

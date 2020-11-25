@@ -25,18 +25,18 @@
  */
 declare(strict_types = 1);
 
-namespace PHPStan\Testing;
+namespace CodeLts\CliTools\ErrorFormatter\Tests;
 
 use PHPStan\Analyser\Error;
-use PHPStan\Command\AnalysisResult;
-use PHPStan\Command\ErrorsConsoleStyle;
-use PHPStan\Command\Output;
-use PHPStan\Command\Symfony\SymfonyOutput;
-use PHPStan\Command\Symfony\SymfonyStyle;
+use CodeLts\CliTools\AnalysisResult;
+use CodeLts\CliTools\ErrorsConsoleStyle;
+use CodeLts\CliTools\Output;
+use CodeLts\CliTools\Symfony\SymfonyOutput;
+use CodeLts\CliTools\Symfony\SymfonyStyle;
 use Symfony\Component\Console\Input\StringInput;
 use Symfony\Component\Console\Output\StreamOutput;
 
-abstract class ErrorFormatterTestCase extends \PHPStan\Testing\TestCase
+abstract class ErrorFormatterTestCase extends \CodeLts\CliTools\Tests\TestCase
 {
 
 	protected const DIRECTORY_PATH = '/data/folder/with space/and unicode 😃/project';

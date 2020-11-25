@@ -27,7 +27,7 @@ declare(strict_types = 1);
 
 namespace CodeLts\CliTools\File;
 
-class CouldNotReadFileException extends \PHPStan\AnalysedCodeException
+class CouldNotReadFileException extends \Exception
 {
 
 	public function __construct(string $fileName)

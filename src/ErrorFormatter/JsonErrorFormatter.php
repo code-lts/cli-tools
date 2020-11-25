@@ -25,11 +25,11 @@
  */
 declare(strict_types = 1);
 
-namespace PHPStan\Command\ErrorFormatter;
+namespace CodeLts\CliTools\ErrorFormatter;
 
 use Nette\Utils\Json;
-use PHPStan\Command\AnalysisResult;
-use PHPStan\Command\Output;
+use CodeLts\CliTools\AnalysisResult;
+use CodeLts\CliTools\Output;
 
 class JsonErrorFormatter implements ErrorFormatter
 {

@@ -26,11 +26,11 @@
 
 declare(strict_types = 1);
 
-namespace PHPStan\Command\ErrorFormatter;
+namespace CodeLts\CliTools\ErrorFormatter\ErrorFormatter;
 
-use PHPStan\File\FuzzyRelativePathHelper;
-use PHPStan\File\NullRelativePathHelper;
-use PHPStan\Testing\ErrorFormatterTestCase;
+use CodeLts\CliTools\FuzzyRelativePathHelper;
+use CodeLts\CliTools\NullRelativePathHelper;
+use CodeLts\CliTools\Tests\ErrorFormatterTestCase;
 
 class TeamcityErrorFormatterTest extends ErrorFormatterTestCase
 {

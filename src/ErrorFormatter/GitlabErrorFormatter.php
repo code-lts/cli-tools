@@ -25,12 +25,12 @@
  */
 declare(strict_types = 1);
 
-namespace PHPStan\Command\ErrorFormatter;
+namespace CodeLts\CliTools\ErrorFormatter;
 
 use Nette\Utils\Json;
-use PHPStan\Command\AnalysisResult;
-use PHPStan\Command\Output;
-use PHPStan\File\RelativePathHelper;
+use CodeLts\CliTools\AnalysisResult;
+use CodeLts\CliTools\Output;
+use CodeLts\CliTools\RelativePathHelper;
 
 /**
  * @see https://docs.gitlab.com/ee/user/project/merge_requests/code_quality.html#implementing-a-custom-tool

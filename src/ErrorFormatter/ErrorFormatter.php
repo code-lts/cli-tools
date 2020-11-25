@@ -25,10 +25,10 @@
  */
 declare(strict_types = 1);
 
-namespace PHPStan\Command\ErrorFormatter;
+namespace CodeLts\CliTools\ErrorFormatter;
 
-use PHPStan\Command\AnalysisResult;
-use PHPStan\Command\Output;
+use CodeLts\CliTools\AnalysisResult;
+use CodeLts\CliTools\Output;
 
 interface ErrorFormatter
 {
@@ -36,8 +36,8 @@ interface ErrorFormatter
 	/**
 	 * Formats the errors and outputs them to the console.
 	 *
-	 * @param \PHPStan\Command\AnalysisResult $analysisResult
-	 * @param \PHPStan\Command\Output $output
+	 * @param \CodeLts\CliTools\AnalysisResult $analysisResult
+	 * @param \CodeLts\CliTools\Output $output
 	 * @return int Error code.
 	 */
 	public function formatErrors(

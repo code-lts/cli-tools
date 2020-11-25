@@ -25,9 +25,9 @@
  */
 declare(strict_types = 1);
 
-namespace PHPStan\Command\ErrorFormatter;
+namespace CodeLts\CliTools\ErrorFormatter\ErrorFormatter;
 
-use PHPStan\Testing\ErrorFormatterTestCase;
+use CodeLts\CliTools\Tests\ErrorFormatterTestCase;
 
 class RawErrorFormatterTest extends ErrorFormatterTestCase
 {

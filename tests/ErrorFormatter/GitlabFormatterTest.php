@@ -25,10 +25,10 @@
  */
 declare(strict_types = 1);
 
-namespace PHPStan\Command\ErrorFormatter;
+namespace CodeLts\CliTools\ErrorFormatter\ErrorFormatter;
 
-use PHPStan\File\SimpleRelativePathHelper;
-use PHPStan\Testing\ErrorFormatterTestCase;
+use CodeLts\CliTools\SimpleRelativePathHelper;
+use CodeLts\CliTools\Tests\ErrorFormatterTestCase;
 
 class GitlabFormatterTest extends ErrorFormatterTestCase
 {

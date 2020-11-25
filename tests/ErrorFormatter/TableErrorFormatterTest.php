@@ -25,13 +25,13 @@
  */
 declare(strict_types = 1);
 
-namespace PHPStan\Command\ErrorFormatter;
+namespace CodeLts\CliTools\ErrorFormatter\ErrorFormatter;
 
-use PHPStan\File\FuzzyRelativePathHelper;
-use PHPStan\File\NullRelativePathHelper;
-use PHPStan\Testing\ErrorFormatterTestCase;
+use CodeLts\CliTools\FuzzyRelativePathHelper;
+use CodeLts\CliTools\NullRelativePathHelper;
+use CodeLts\CliTools\Tests\ErrorFormatterTestCase;
 
-class GithubErrorFormatterTest extends ErrorFormatterTestCase
+class TableErrorFormatterTest extends ErrorFormatterTestCase
 {
 
 	public function dataFormatterOutputProvider(): iterable
@@ -60,7 +60,6 @@ class GithubErrorFormatterTest extends ErrorFormatterTestCase
 
  [ERROR] Found 1 error
 
-::error file=folder with unicode 😃/file name with "spaces" and unicode 😃.php,line=4,col=0::Foo
 ',
 		];
 
@@ -77,7 +76,6 @@ class GithubErrorFormatterTest extends ErrorFormatterTestCase
 
  [ERROR] Found 1 error
 
-::error ::first generic error
 ',
 		];
 
@@ -104,10 +102,6 @@ class GithubErrorFormatterTest extends ErrorFormatterTestCase
 
  [ERROR] Found 4 errors
 
-::error file=folder with unicode 😃/file name with "spaces" and unicode 😃.php,line=2,col=0::Bar%0ABar2
-::error file=folder with unicode 😃/file name with "spaces" and unicode 😃.php,line=4,col=0::Foo
-::error file=foo.php,line=1,col=0::Foo
-::error file=foo.php,line=5,col=0::Bar%0ABar2
 ',
 		];
 
@@ -125,8 +119,6 @@ class GithubErrorFormatterTest extends ErrorFormatterTestCase
 
  [ERROR] Found 2 errors
 
-::error ::first generic error
-::error ::second generic error
 ',
 		];
 
@@ -160,12 +152,6 @@ class GithubErrorFormatterTest extends ErrorFormatterTestCase
 
  [ERROR] Found 6 errors
 
-::error file=folder with unicode 😃/file name with "spaces" and unicode 😃.php,line=2,col=0::Bar%0ABar2
-::error file=folder with unicode 😃/file name with "spaces" and unicode 😃.php,line=4,col=0::Foo
-::error file=foo.php,line=1,col=0::Foo
-::error file=foo.php,line=5,col=0::Bar%0ABar2
-::error ::first generic error
-::error ::second generic error
 ',
 		];
 	}
@@ -187,11 +173,7 @@ class GithubErrorFormatterTest extends ErrorFormatterTestCase
 		string $expected
 	): void
 	{
-		$relativePathHelper = new FuzzyRelativePathHelper(new NullRelativePathHelper(), self::DIRECTORY_PATH, [], '/');
-		$formatter = new GithubErrorFormatter(
-			$relativePathHelper,
-			new TableErrorFormatter($relativePathHelper, false)
-		);
+		$formatter = new TableErrorFormatter(new FuzzyRelativePathHelper(new NullRelativePathHelper(), self::DIRECTORY_PATH, [], '/'), false);
 
 		$this->assertSame($exitCode, $formatter->formatErrors(
 			$this->getAnalysisResult($numFileErrors, $numGenericErrors),

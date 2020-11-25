@@ -25,11 +25,11 @@
  */
 declare(strict_types = 1);
 
-namespace PHPStan\Command\ErrorFormatter;
+namespace CodeLts\CliTools\ErrorFormatter;
 
-use PHPStan\Command\AnalysisResult;
-use PHPStan\Command\Output;
-use PHPStan\File\RelativePathHelper;
+use CodeLts\CliTools\AnalysisResult;
+use CodeLts\CliTools\Output;
+use CodeLts\CliTools\RelativePathHelper;
 
 /**
  * @see https://www.jetbrains.com/help/teamcity/build-script-interaction-with-teamcity.html#Reporting+Inspections

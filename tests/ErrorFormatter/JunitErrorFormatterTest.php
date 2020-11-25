@@ -25,17 +25,17 @@
  */
 declare(strict_types = 1);
 
-namespace PHPStan\Command\ErrorFormatter;
+namespace CodeLts\CliTools\ErrorFormatter\ErrorFormatter;
 
 use DOMDocument;
 use Generator;
-use PHPStan\File\SimpleRelativePathHelper;
-use PHPStan\Testing\ErrorFormatterTestCase;
+use CodeLts\CliTools\SimpleRelativePathHelper;
+use CodeLts\CliTools\Tests\ErrorFormatterTestCase;
 
 class JunitErrorFormatterTest extends ErrorFormatterTestCase
 {
 
-	/** @var \PHPStan\Command\ErrorFormatter\JunitErrorFormatter */
+	/** @var \CodeLts\CliTools\ErrorFormatter\JunitErrorFormatter */
 	private $formatter;
 
 	public function setUp(): void

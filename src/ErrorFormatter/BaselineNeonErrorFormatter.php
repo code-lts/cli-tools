@@ -25,19 +25,19 @@
  */
 declare(strict_types = 1);
 
-namespace PHPStan\Command\ErrorFormatter;
+namespace CodeLts\CliTools\ErrorFormatter;
 
 use Nette\DI\Helpers;
 use Nette\Neon\Neon;
-use PHPStan\Command\AnalysisResult;
-use PHPStan\Command\Output;
-use PHPStan\File\RelativePathHelper;
+use CodeLts\CliTools\AnalysisResult;
+use CodeLts\CliTools\Output;
+use CodeLts\CliTools\File\RelativePathHelper;
 use function preg_quote;
 
 class BaselineNeonErrorFormatter implements ErrorFormatter
 {
 
-	private \PHPStan\File\RelativePathHelper $relativePathHelper;
+	private \CodeLts\CliTools\File\RelativePathHelper $relativePathHelper;
 
 	public function __construct(RelativePathHelper $relativePathHelper)
 	{

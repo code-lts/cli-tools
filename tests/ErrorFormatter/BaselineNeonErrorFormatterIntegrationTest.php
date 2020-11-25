@@ -25,7 +25,7 @@
  */
 declare(strict_types = 1);
 
-namespace PHPStan\Command\ErrorFormatter;
+namespace CodeLts\CliTools\ErrorFormatter\ErrorFormatter;
 
 use Nette\Utils\Json;
 use PHPUnit\Framework\TestCase;
