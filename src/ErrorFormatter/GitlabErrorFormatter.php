@@ -27,7 +27,6 @@ declare(strict_types = 1);
 
 namespace CodeLts\CliTools\ErrorFormatter;
 
-use Nette\Utils\Json;
 use CodeLts\CliTools\AnalysisResult;
 use CodeLts\CliTools\Output;
 use CodeLts\CliTools\File\RelativePathHelper;
@@ -93,7 +92,7 @@ class GitlabErrorFormatter implements ErrorFormatter
 			];
 		}
 
-		$json = Json::encode($errorsArray, Json::PRETTY);
+		$json = json_encode($errorsArray, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 
 		$output->writeRaw($json);
 

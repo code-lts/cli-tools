@@ -77,7 +77,7 @@ class TableErrorFormatter implements ErrorFormatter
 			return 0;
 		}
 
-		/** @var array<string, \PHPStan\Analyser\Error[]> $fileErrors */
+		/** @var array<string, \CodeLts\CliTools\Error[]> $fileErrors */
 		$fileErrors = [];
 		foreach ($analysisResult->getFileSpecificErrors() as $fileSpecificError) {
 			if (!isset($fileErrors[$fileSpecificError->getFile()])) {

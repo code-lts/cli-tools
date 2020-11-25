@@ -27,7 +27,6 @@ declare(strict_types = 1);
 
 namespace CodeLts\CliTools\ErrorFormatter;
 
-use Nette\Utils\Json;
 use CodeLts\CliTools\AnalysisResult;
 use CodeLts\CliTools\Output;
 
@@ -76,7 +75,7 @@ class JsonErrorFormatter implements ErrorFormatter
 			$errorsArray['errors'][] = $notFileSpecificError;
 		}
 
-		$json = Json::encode($errorsArray, $this->pretty ? Json::PRETTY : 0);
+		$json = json_encode($errorsArray, $this->pretty ? JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT : JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 
 		$output->writeRaw($json);
 
