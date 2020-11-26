@@ -1,6 +1,8 @@
 # CLI tools
 
 [![codecov](https://codecov.io/gh/code-lts/cli-tools/branch/main/graph/badge.svg?branch=main)](https://codecov.io/gh/code-lts/cli-tools?branch=main)
+[![Version](https://poser.pugx.org/code-lts/cli-tools/version)](//packagist.org/packages/code-lts/cli-tools)
+[![License](https://poser.pugx.org/code-lts/cli-tools/license)](//packagist.org/packages/code-lts/cli-tools)
 
 CLI tools for managing output formatting
 
