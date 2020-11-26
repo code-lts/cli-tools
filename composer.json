@@ -28,7 +28,9 @@
     ],
     "scripts": {
         "test": "phpunit",
-        "phpstan": "phpstan analyse"
+        "phpstan": "phpstan analyse",
+        "phpcs": "echo 'Not implemented for now';",
+        "phpcbf": "echo 'Not implemented for now';"
     },
     "require": {
         "php": "^7.1 || ^8.0",
