@@ -34,6 +34,9 @@ use CodeLts\CliTools\ErrorFormatter\GitlabErrorFormatter;
 class GitlabFormatterTest extends ErrorFormatterTestCase
 {
 
+	/**
+	 * @return iterable<array>
+	 */
 	public function dataFormatterOutputProvider(): iterable
 	{
 		yield [

@@ -52,20 +52,24 @@ class GitlabErrorFormatter implements ErrorFormatter
 		$errorsArray = [];
 
 		foreach ($analysisResult->getFileSpecificErrors() as $fileSpecificError) {
+			$file = $fileSpecificError->getFile();
+			if ($file === null) {
+				continue;
+			}
 			$error = [
 				'description' => $fileSpecificError->getMessage(),
 				'fingerprint' => hash(
 					'sha256',
 					implode(
 						[
-							$fileSpecificError->getFile(),
+							$file,
 							$fileSpecificError->getLine(),
 							$fileSpecificError->getMessage(),
 						]
 					)
 				),
 				'location' => [
-					'path' => $this->relativePathHelper->getRelativePath($fileSpecificError->getFile()),
+					'path' => $this->relativePathHelper->getRelativePath($file),
 					'lines' => [
 						'begin' => $fileSpecificError->getLine(),
 					],
@@ -94,7 +98,7 @@ class GitlabErrorFormatter implements ErrorFormatter
 
 		$json = json_encode($errorsArray, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 
-		$output->writeRaw($json);
+		$output->writeRaw((string) $json);
 
 		return $analysisResult->hasErrors() ? 1 : 0;
 	}

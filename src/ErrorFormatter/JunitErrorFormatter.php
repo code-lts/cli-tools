@@ -58,7 +58,12 @@ class JunitErrorFormatter implements ErrorFormatter
 		);
 
 		foreach ($analysisResult->getFileSpecificErrors() as $fileSpecificError) {
-			$fileName = $this->relativePathHelper->getRelativePath($fileSpecificError->getFile());
+			$file = $fileSpecificError->getFile();
+			if ($file === null) {
+				continue;
+			}
+
+			$fileName = $this->relativePathHelper->getRelativePath($file);
 			$result .= $this->createTestCase(
 				sprintf('%s:%s', $fileName, (string) $fileSpecificError->getLine()),
 				'ERROR',

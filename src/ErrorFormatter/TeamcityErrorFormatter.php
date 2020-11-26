@@ -69,7 +69,7 @@ class TeamcityErrorFormatter implements ErrorFormatter
 			$result .= $this->createTeamcityLine('inspection', [
 				'typeId' => 'cli-tools',
 				'message' => $fileSpecificError->getMessage(),
-				'file' => $this->relativePathHelper->getRelativePath($fileSpecificError->getFile()),
+				'file' => $fileSpecificError->getFile() !== null ? $this->relativePathHelper->getRelativePath($fileSpecificError->getFile()) : '?',
 				'line' => $fileSpecificError->getLine(),
 				// additional attributes
 				'SEVERITY' => 'ERROR',

@@ -35,6 +35,9 @@ use CodeLts\CliTools\Tests\ErrorFormatterTestCase;
 class TableErrorFormatterTest extends ErrorFormatterTestCase
 {
 
+	/**
+	 * @return iterable<array>
+	 */
 	public function dataFormatterOutputProvider(): iterable
 	{
 		yield [
@@ -174,7 +177,7 @@ class TableErrorFormatterTest extends ErrorFormatterTestCase
 		string $expected
 	): void
 	{
-		$formatter = new TableErrorFormatter(new FuzzyRelativePathHelper(new NullRelativePathHelper(), self::DIRECTORY_PATH), false);
+		$formatter = new TableErrorFormatter(new FuzzyRelativePathHelper(new NullRelativePathHelper(), self::DIRECTORY_PATH));
 
 		$this->assertSame($exitCode, $formatter->formatErrors(
 			$this->getAnalysisResult($numFileErrors, $numGenericErrors),

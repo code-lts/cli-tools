@@ -56,6 +56,9 @@ class JsonErrorFormatter implements ErrorFormatter
 
 		foreach ($analysisResult->getFileSpecificErrors() as $fileSpecificError) {
 			$file = $fileSpecificError->getFile();
+			if ($file === null) {
+				continue;
+			}
 			if (!array_key_exists($file, $errorsArray['files'])) {
 				$errorsArray['files'][$file] = [
 					'errors' => 0,
@@ -77,7 +80,7 @@ class JsonErrorFormatter implements ErrorFormatter
 
 		$json = json_encode($errorsArray, $this->pretty ? JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT : JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 
-		$output->writeRaw($json);
+		$output->writeRaw((string) $json);
 
 		return $analysisResult->hasErrors() ? 1 : 0;
 	}

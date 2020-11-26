@@ -36,6 +36,9 @@ use CodeLts\CliTools\Tests\ErrorFormatterTestCase;
 class CheckstyleErrorFormatterTest extends ErrorFormatterTestCase
 {
 
+	/**
+	 * @return iterable<array>
+	 */
 	public function dataFormatterOutputProvider(): iterable
 	{
 		yield [

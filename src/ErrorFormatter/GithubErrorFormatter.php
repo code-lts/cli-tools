@@ -63,7 +63,7 @@ class GithubErrorFormatter implements ErrorFormatter
 
 		foreach ($analysisResult->getFileSpecificErrors() as $fileSpecificError) {
 			$metas = [
-				'file' => $this->relativePathHelper->getRelativePath($fileSpecificError->getFile()),
+				'file' => $fileSpecificError->getFile() !== null ? $this->relativePathHelper->getRelativePath($fileSpecificError->getFile()) : '?',
 				'line' => $fileSpecificError->getLine(),
 				'col' => 0,
 			];

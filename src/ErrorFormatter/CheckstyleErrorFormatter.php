@@ -132,6 +132,9 @@ class CheckstyleErrorFormatter implements ErrorFormatter
 		/** @var \CodeLts\CliTools\Error $fileSpecificError */
 		foreach ($analysisResult->getFileSpecificErrors() as $fileSpecificError) {
 			$absolutePath = $fileSpecificError->getFile();
+			if ($absolutePath === null) {
+				continue;
+			}
 			$relativeFilePath = $this->relativePathHelper->getRelativePath(
 				$absolutePath
 			);

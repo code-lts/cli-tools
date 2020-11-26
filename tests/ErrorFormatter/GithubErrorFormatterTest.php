@@ -36,6 +36,9 @@ use CodeLts\CliTools\ErrorFormatter\TableErrorFormatter;
 class GithubErrorFormatterTest extends ErrorFormatterTestCase
 {
 
+	/**
+	 * @return iterable<array>
+	 */
 	public function dataFormatterOutputProvider(): iterable
 	{
 		yield [
@@ -192,7 +195,7 @@ class GithubErrorFormatterTest extends ErrorFormatterTestCase
 		$relativePathHelper = new FuzzyRelativePathHelper(new NullRelativePathHelper(), self::DIRECTORY_PATH);
 		$formatter = new GithubErrorFormatter(
 			$relativePathHelper,
-			new TableErrorFormatter($relativePathHelper, false)
+			new TableErrorFormatter($relativePathHelper)
 		);
 
 		$this->assertSame($exitCode, $formatter->formatErrors(

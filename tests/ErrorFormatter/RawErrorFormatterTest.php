@@ -33,6 +33,9 @@ use CodeLts\CliTools\Tests\ErrorFormatterTestCase;
 class RawErrorFormatterTest extends ErrorFormatterTestCase
 {
 
+	/**
+	 * @return iterable<array>
+	 */
 	public function dataFormatterOutputProvider(): iterable
 	{
 		yield [
