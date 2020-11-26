@@ -108,8 +108,7 @@ abstract class ErrorFormatterTestCase extends \CodeLts\CliTools\Tests\AbstractTe
 			$fileErrors,
 			$genericErrors,
 			[],
-			[],
-			null
+			[]
 		);
 	}
 

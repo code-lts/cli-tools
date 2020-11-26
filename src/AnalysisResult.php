@@ -49,14 +49,12 @@ class AnalysisResult
 	 * @param string[] $notFileSpecificErrors
 	 * @param string[] $internalErrors
 	 * @param string[] $warnings
-	 * @param string|null $projectConfigFile
 	 */
 	public function __construct(
 		array $fileSpecificErrors,
 		array $notFileSpecificErrors,
 		array $internalErrors,
-		array $warnings,
-		?string $projectConfigFile
+		array $warnings
 	)
 	{
 		usort(
@@ -78,7 +76,6 @@ class AnalysisResult
 		$this->notFileSpecificErrors = $notFileSpecificErrors;
 		$this->internalErrors = $internalErrors;
 		$this->warnings = $warnings;
-		$this->projectConfigFile = $projectConfigFile;
 	}
 
 	public function hasErrors(): bool
