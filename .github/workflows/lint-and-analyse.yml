@@ -41,5 +41,5 @@ jobs:
                   key: composer-cache
             - name: Install dependencies
               run: composer install --no-interaction --prefer-dist --no-progress --no-suggest
-            - name: Lint files
+            - name: Analyse files
               run: composer run phpstan
