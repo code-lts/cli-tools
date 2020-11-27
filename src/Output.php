@@ -43,4 +43,5 @@ interface Output
 
 	public function isDebug(): bool;
 
+	public function isDecorated(): bool;
 }
