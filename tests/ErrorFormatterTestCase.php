@@ -86,10 +86,10 @@ abstract class ErrorFormatterTestCase extends \CodeLts\CliTools\Tests\AbstractTe
 		return $this->rtrimMultiline($contents);
 	}
 
-	protected function getAnalysisResult(int $numFileErrors, int $numGenericErrors): AnalysisResult
+	protected function getAnalysisResult(int $numFileErrors, int $numGenericErrors, int $numWarnings = 0): AnalysisResult
 	{
 		if ($numFileErrors > 4 || $numFileErrors < 0 || $numGenericErrors > 2 || $numGenericErrors < 0) {
-			throw new \Exception();
+			throw new \Exception('Test case error');
 		}
 
 		$fileErrors = array_slice([
@@ -104,11 +104,17 @@ abstract class ErrorFormatterTestCase extends \CodeLts\CliTools\Tests\AbstractTe
 			'second generic error',
 		], 0, $numGenericErrors);
 
+		$warnings = array_slice([
+			'first warning',
+			'second 😃 warning',
+			'3rd warning !',
+		], 0, $numWarnings);
+
 		return new AnalysisResult(
 			$fileErrors,
 			$genericErrors,
 			[],
-			[]
+			$warnings
 		);
 	}
 
