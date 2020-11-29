@@ -32,7 +32,12 @@ class FileTest extends AbstractTestCase
     public function testWriteInvalidFile(): void
     {
         $this->expectException(CouldNotWriteFileException::class);
-        $this->expectExceptionMessage('Could not write file: / (file_put_contents(/): failed to open stream: Is a directory)');
+        if (PHP_VERSION_ID >= 80000) {
+            $this->expectExceptionMessage('Could not write file: / (file_put_contents(/): Failed to open stream: Is a directory)');
+        }
+        if (PHP_VERSION_ID < 80000) {
+            $this->expectExceptionMessage('Could not write file: / (file_put_contents(/): failed to open stream: Is a directory)');
+        }
         FileWriter::write('/', '');
     }
 }
