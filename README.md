@@ -4,7 +4,7 @@
 [![Version](https://poser.pugx.org/code-lts/cli-tools/version)](//packagist.org/packages/code-lts/cli-tools)
 [![License](https://poser.pugx.org/code-lts/cli-tools/license)](//packagist.org/packages/code-lts/cli-tools)
 
-CLI tools for managing output formatting
+CLI tools to manage output errors formatting for junit, checkstyle, teamcity, gitlab and github error formats.
 
 ## Motivation
 
