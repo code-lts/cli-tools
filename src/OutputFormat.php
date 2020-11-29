@@ -59,13 +59,7 @@ class OutputFormat
         if (in_array($outputFormat, OutputFormat::VALID_OUTPUT_FORMATS)) {
             return true;
         }
-        throw new FormatNotFoundException(
-            sprintf(
-                'Error formatter "%s" not found. Available error formatters are: %s',
-                $outputFormat,
-                implode(', ', OutputFormat::VALID_OUTPUT_FORMATS)
-            )
-        );
+        throw new FormatNotFoundException($outputFormat);
     }
 
     /**

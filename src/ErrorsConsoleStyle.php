@@ -55,8 +55,7 @@ class ErrorsConsoleStyle extends \Symfony\Component\Console\Style\SymfonyStyle
     private function isCiDetected(): bool
     {
         if ($this->isCiDetected === null) {
-            $ciDetector = new CiDetector();
-            $this->isCiDetected = $ciDetector->isCiDetected();
+            $this->isCiDetected = Utils::isCiDetected();
         }
 
         return $this->isCiDetected;

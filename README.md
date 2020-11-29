@@ -85,3 +85,13 @@ use CodeLts\CliTools\File\AnsiEscapeSequences;
 
 $this->output->writeFormatted(AnsiEscapeSequences::ERASE_TO_LINE_END);
 ```
+
+### Detect a CI
+
+```php
+use CodeLts\CliTools\Utils;
+
+// See supported CIs at https://github.com/OndraM/ci-detector#supported-continuous-integration-servers
+
+Utils::isCiDetected(); // true of false
+```
