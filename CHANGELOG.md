@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.x.x] - YYYY-MM-DD
 
+- Fix and improve the wording of FormatNotFoundException message
+- Improve composer keywords
+
 ## [1.2.0] - 2020-11-29
 
 - Drop `ERASE_TO_LINE_END_2` and `ERASE_TO_LINE_END_1` constants from `AnsiEscapeSequences` because they where broken.
