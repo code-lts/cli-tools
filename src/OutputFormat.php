@@ -14,6 +14,7 @@ use CodeLts\CliTools\ErrorFormatter\RawErrorFormatter;
 use CodeLts\CliTools\ErrorFormatter\RawTextErrorFormatter;
 use CodeLts\CliTools\ErrorFormatter\TableErrorFormatter;
 use CodeLts\CliTools\ErrorFormatter\TeamcityErrorFormatter;
+use CodeLts\CliTools\Exceptions\FormatNotFoundException;
 use CodeLts\CliTools\File\FuzzyRelativePathHelper;
 use CodeLts\CliTools\File\NullRelativePathHelper;
 use CodeLts\CliTools\File\RelativePathHelper;
@@ -52,14 +53,14 @@ class OutputFormat
      * @param string $outputFormat The format to check
      * @return true
      *
-     * @throws Exception
+     * @throws FormatNotFoundException if the format does not exist
      */
     public static function checkOutputFormatIsValid(string $outputFormat): bool
     {
         if (in_array($outputFormat, OutputFormat::VALID_OUTPUT_FORMATS)) {
             return true;
         }
-        throw new Exception(
+        throw new FormatNotFoundException(
             sprintf(
                 'Error formatter "%s" not found. Available error formatters are: %s',
                 $outputFormat,
@@ -97,7 +98,7 @@ class OutputFormat
     /**
      * get an ErrorFormatter for the given format
      *
-     * @throws Exception if the format is not implemented
+     * @throws FormatNotFoundException if the format is not implemented
      */
     public static function getFormatterForChoice(
         string $outputFormat,
@@ -143,6 +144,6 @@ class OutputFormat
             return new TeamcityErrorFormatter($pathHelper);
         }
 
-        throw new Exception('Not implemented format');
+        throw new FormatNotFoundException($outputFormat);
     }
 }

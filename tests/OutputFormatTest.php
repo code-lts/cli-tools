@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace CodeLts\CliTools\Tests;
 
 use CodeLts\CliTools\ErrorFormatter\ErrorFormatter;
+use CodeLts\CliTools\Exceptions\FormatNotFoundException;
 use CodeLts\CliTools\File\NullRelativePathHelper;
 use CodeLts\CliTools\OutputFormat;
-use Exception;
 
 class OutputFormatTest extends ErrorFormatterTestCase
 {
@@ -38,7 +38,7 @@ class OutputFormatTest extends ErrorFormatterTestCase
     public function testInValidFormats(string $formatName): void
     {
         $formatName = 'foo' . $formatName;
-        $this->expectException(Exception::class);
+        $this->expectException(FormatNotFoundException::class);
         $this->expectExceptionMessage(
             'Error formatter "' . $formatName . '" not found.'
             . ' Available error formatters are: raw, rawtext, table, checkstyle, json, junit, prettyJson, gitlab, github, teamcity'
@@ -52,6 +52,19 @@ class OutputFormatTest extends ErrorFormatterTestCase
     public function testGetFormatterForChoice(string $formatName): void
     {
         $this->assertInstanceOf(ErrorFormatter::class, OutputFormat::getFormatterForChoice($formatName, new NullRelativePathHelper()));
+    }
+
+    /**
+     * @dataProvider dataProviderFormatsNames
+     */
+    public function testGetFormatterForChoiceInvalid(string $formatName): void
+    {
+        $formatName = 'foo' . $formatName;
+        $this->expectException(FormatNotFoundException::class);
+        $this->expectExceptionMessage(
+            'The format "' . $formatName . '" is not implemented.'
+        );
+        OutputFormat::getFormatterForChoice($formatName, new NullRelativePathHelper());
     }
 
     /**
