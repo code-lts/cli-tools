@@ -32,14 +32,9 @@ class AnsiEscapeSequences
     public const MOVE_CURSOR_DOWN_2 = "\033[2B";
 
     /**
-     * Erase to the end of the line on 2 lines
+     * Erase to the end of the line
      */
-    public const ERASE_TO_LINE_END_1 = "\033[2A";
-
-    /**
-     * Erase to the end of the line on 2 lines
-     */
-    public const ERASE_TO_LINE_END_2 = "\033[2A";
+    public const ERASE_TO_LINE_END = "\033[K";
 
     /**
      * Clear the screen, move to (0,0)
