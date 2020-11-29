@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace CodeLts\CliTools\Tests;
 
-use CodeLts\CliTools\AnalysisResult;
 use CodeLts\CliTools\ErrorFormatter\ErrorFormatter;
 use CodeLts\CliTools\File\NullRelativePathHelper;
 use CodeLts\CliTools\OutputFormat;
