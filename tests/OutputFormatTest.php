@@ -11,6 +11,10 @@ use CodeLts\CliTools\OutputFormat;
 
 class OutputFormatTest extends ErrorFormatterTestCase
 {
+    /**
+     * @var string
+     */
+    private $availablesFormats = 'raw, rawtext, table, checkstyle, json, junit, prettyJson, gitlab, github, teamcity';
 
     /**
      * @return array[]
@@ -41,7 +45,7 @@ class OutputFormatTest extends ErrorFormatterTestCase
         $this->expectException(FormatNotFoundException::class);
         $this->expectExceptionMessage(
             'Error formatter "' . $formatName . '" not found.'
-            . ' Available error formatters are: raw, rawtext, table, checkstyle, json, junit, prettyJson, gitlab, github, teamcity'
+            . ' Available error formatters are: ' . $this->availablesFormats
         );
         $this->assertTrue(OutputFormat::checkOutputFormatIsValid($formatName));
     }
@@ -62,7 +66,7 @@ class OutputFormatTest extends ErrorFormatterTestCase
         $formatName = 'foo' . $formatName;
         $this->expectException(FormatNotFoundException::class);
         $this->expectExceptionMessage(
-            'The format "' . $formatName . '" is not implemented.'
+            'Error formatter "' . $formatName . '" is not implemented. Available error formatters are: ' . $this->availablesFormats
         );
         OutputFormat::getFormatterForChoice($formatName, new NullRelativePathHelper());
     }
