@@ -23,7 +23,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace CodeLts\CliTools\File;
 
@@ -32,17 +32,16 @@ use function file_get_contents;
 class FileReader
 {
 
-	public static function read(string $fileName): string
-	{
-		if (!is_file($fileName)) {
-			throw new \CodeLts\CliTools\File\CouldNotReadFileException($fileName);
-		}
-		$contents = @file_get_contents($fileName);
-		if ($contents === false) {
-			throw new \CodeLts\CliTools\File\CouldNotReadFileException($fileName);
-		}
+    public static function read(string $fileName): string
+    {
+        if (!is_file($fileName)) {
+            throw new \CodeLts\CliTools\File\CouldNotReadFileException($fileName);
+        }
+        $contents = @file_get_contents($fileName);
+        if ($contents === false) {
+            throw new \CodeLts\CliTools\File\CouldNotReadFileException($fileName);
+        }
 
-		return $contents;
-	}
-
+        return $contents;
+    }
 }

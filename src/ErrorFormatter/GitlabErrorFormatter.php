@@ -23,7 +23,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace CodeLts\CliTools\ErrorFormatter;
 
@@ -37,70 +37,69 @@ use CodeLts\CliTools\File\RelativePathHelper;
 class GitlabErrorFormatter implements ErrorFormatter
 {
 
-	/**
-	 * @var RelativePathHelper
-	 */
-	private $relativePathHelper;
+    /**
+     * @var RelativePathHelper
+     */
+    private $relativePathHelper;
 
-	public function __construct(RelativePathHelper $relativePathHelper)
-	{
-		$this->relativePathHelper = $relativePathHelper;
-	}
+    public function __construct(RelativePathHelper $relativePathHelper)
+    {
+        $this->relativePathHelper = $relativePathHelper;
+    }
 
-	public function formatErrors(AnalysisResult $analysisResult, Output $output): int
-	{
-		$errorsArray = [];
+    public function formatErrors(AnalysisResult $analysisResult, Output $output): int
+    {
+        $errorsArray = [];
 
-		foreach ($analysisResult->getFileSpecificErrors() as $fileSpecificError) {
-			$file = $fileSpecificError->getFile();
-			if ($file === null) {
-				continue;
-			}
-			$error = [
-				'description' => $fileSpecificError->getMessage(),
-				'fingerprint' => hash(
-					'sha256',
-					implode(
-						[
-							$file,
-							$fileSpecificError->getLine(),
-							$fileSpecificError->getMessage(),
-						]
-					)
-				),
-				'location' => [
-					'path' => $this->relativePathHelper->getRelativePath($file),
-					'lines' => [
-						'begin' => $fileSpecificError->getLine(),
-					],
-				],
-			];
+        foreach ($analysisResult->getFileSpecificErrors() as $fileSpecificError) {
+            $file = $fileSpecificError->getFile();
+            if ($file === null) {
+                continue;
+            }
+            $error = [
+                'description' => $fileSpecificError->getMessage(),
+                'fingerprint' => hash(
+                    'sha256',
+                    implode(
+                        [
+                            $file,
+                            $fileSpecificError->getLine(),
+                            $fileSpecificError->getMessage(),
+                        ]
+                    )
+                ),
+                'location' => [
+                    'path' => $this->relativePathHelper->getRelativePath($file),
+                    'lines' => [
+                        'begin' => $fileSpecificError->getLine(),
+                    ],
+                ],
+            ];
 
-			if (!$fileSpecificError->canBeIgnored()) {
-				$error['severity'] = 'blocker';
-			}
+            if (!$fileSpecificError->canBeIgnored()) {
+                $error['severity'] = 'blocker';
+            }
 
-			$errorsArray[] = $error;
-		}
+            $errorsArray[] = $error;
+        }
 
-		foreach ($analysisResult->getNotFileSpecificErrors() as $notFileSpecificError) {
-			$errorsArray[] = [
-				'description' => $notFileSpecificError,
-				'fingerprint' => hash('sha256', $notFileSpecificError),
-				'location' => [
-					'path' => '',
-					'lines' => [
-						'begin' => 0,
-					],
-				],
-			];
-		}
+        foreach ($analysisResult->getNotFileSpecificErrors() as $notFileSpecificError) {
+            $errorsArray[] = [
+                'description' => $notFileSpecificError,
+                'fingerprint' => hash('sha256', $notFileSpecificError),
+                'location' => [
+                    'path' => '',
+                    'lines' => [
+                        'begin' => 0,
+                    ],
+                ],
+            ];
+        }
 
-		$json = json_encode($errorsArray, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+        $json = json_encode($errorsArray, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 
-		$output->writeRaw((string) $json);
+        $output->writeRaw((string) $json);
 
-		return $analysisResult->hasErrors() ? 1 : 0;
-	}
-
+        return $analysisResult->hasErrors() ? 1 : 0;
+    }
 }

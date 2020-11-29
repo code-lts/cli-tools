@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace CodeLts\CliTools;
 
@@ -28,9 +28,12 @@ class Error
 
 
     public function __construct(
-        string $message, ?string $file, int $line,
-        int $severity = Error::LEVEL_ERROR, ?string $tip = null)
-    {
+        string $message,
+        ?string $file,
+        int $line,
+        int $severity = Error::LEVEL_ERROR,
+        ?string $tip = null
+    ) {
         $this->message = $message;
         $this->file = $file;
         $this->line = $line;
@@ -62,5 +65,4 @@ class Error
     {
         return $this->tip;
     }
-
 }

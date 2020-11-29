@@ -23,16 +23,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace CodeLts\CliTools\File;
 
 class NullRelativePathHelper implements RelativePathHelper
 {
 
-	public function getRelativePath(string $filename): string
-	{
-		return $filename;
-	}
-
+    public function getRelativePath(string $filename): string
+    {
+        return $filename;
+    }
 }

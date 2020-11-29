@@ -23,25 +23,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-declare(strict_types = 1);
-
+declare(strict_types=1);
 
 namespace CodeLts\CliTools;
 
 interface Output
 {
 
-	public function writeFormatted(string $message): void;
+    public function writeFormatted(string $message): void;
 
-	public function writeLineFormatted(string $message): void;
+    public function writeLineFormatted(string $message): void;
 
-	public function writeRaw(string $message): void;
+    public function writeRaw(string $message): void;
 
-	public function getStyle(): OutputStyle;
+    public function getStyle(): OutputStyle;
 
-	public function isVerbose(): bool;
+    public function isVerbose(): bool;
 
-	public function isDebug(): bool;
+    public function isDebug(): bool;
 
-	public function isDecorated(): bool;
+    public function isDecorated(): bool;
 }

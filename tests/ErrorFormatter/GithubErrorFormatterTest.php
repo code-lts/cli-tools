@@ -23,7 +23,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace CodeLts\CliTools\Tests\ErrorFormatter;
 
@@ -36,28 +36,28 @@ use CodeLts\CliTools\ErrorFormatter\TableErrorFormatter;
 class GithubErrorFormatterTest extends ErrorFormatterTestCase
 {
 
-	/**
-	 * @return iterable<array>
-	 */
-	public function dataFormatterOutputProvider(): iterable
-	{
-		yield [
-			'No errors',
-			0,
-			0,
-			0,
-			'
+    /**
+     * @return iterable<array>
+     */
+    public function dataFormatterOutputProvider(): iterable
+    {
+        yield [
+            'No errors',
+            0,
+            0,
+            0,
+            '
  [OK] No errors
 
 ',
-		];
+        ];
 
-		yield [
-			'One file error',
-			1,
-			1,
-			0,
-			' ------ -----------------------------------------------------------------
+        yield [
+            'One file error',
+            1,
+            1,
+            0,
+            ' ------ -----------------------------------------------------------------
   Line   folder with unicode 😃/file name with "spaces" and unicode 😃.php
  ------ -----------------------------------------------------------------
   4      Foo
@@ -67,14 +67,14 @@ class GithubErrorFormatterTest extends ErrorFormatterTestCase
 
 ::error file=folder with unicode 😃/file name with "spaces" and unicode 😃.php,line=4,col=0::Foo
 ',
-		];
+        ];
 
-		yield [
-			'One generic error',
-			1,
-			0,
-			1,
-			' -- ---------------------
+        yield [
+            'One generic error',
+            1,
+            0,
+            1,
+            ' -- ---------------------
      Error
  -- ---------------------
      first generic error
@@ -84,14 +84,14 @@ class GithubErrorFormatterTest extends ErrorFormatterTestCase
 
 ::error ::first generic error
 ',
-		];
+        ];
 
-		yield [
-			'Multiple file errors',
-			1,
-			4,
-			0,
-			' ------ -----------------------------------------------------------------
+        yield [
+            'Multiple file errors',
+            1,
+            4,
+            0,
+            ' ------ -----------------------------------------------------------------
   Line   folder with unicode 😃/file name with "spaces" and unicode 😃.php
  ------ -----------------------------------------------------------------
   2      Bar
@@ -114,14 +114,14 @@ class GithubErrorFormatterTest extends ErrorFormatterTestCase
 ::error file=foo.php,line=1,col=0::Foo
 ::error file=foo.php,line=5,col=0::Bar%0ABar2
 ',
-		];
+        ];
 
-		yield [
-			'Multiple generic errors',
-			1,
-			0,
-			2,
-			' -- ----------------------
+        yield [
+            'Multiple generic errors',
+            1,
+            0,
+            2,
+            ' -- ----------------------
      Error
  -- ----------------------
      first generic error
@@ -133,14 +133,14 @@ class GithubErrorFormatterTest extends ErrorFormatterTestCase
 ::error ::first generic error
 ::error ::second generic error
 ',
-		];
+        ];
 
-		yield [
-			'Multiple file, multiple generic errors',
-			1,
-			4,
-			2,
-			' ------ -----------------------------------------------------------------
+        yield [
+            'Multiple file, multiple generic errors',
+            1,
+            4,
+            2,
+            ' ------ -----------------------------------------------------------------
   Line   folder with unicode 😃/file name with "spaces" and unicode 😃.php
  ------ -----------------------------------------------------------------
   2      Bar
@@ -172,38 +172,36 @@ class GithubErrorFormatterTest extends ErrorFormatterTestCase
 ::error ::first generic error
 ::error ::second generic error
 ',
-		];
-	}
+        ];
+    }
 
-	/**
-	 * @dataProvider dataFormatterOutputProvider
-	 *
-	 * @param string $message
-	 * @param int    $exitCode
-	 * @param int    $numFileErrors
-	 * @param int    $numGenericErrors
-	 * @param string $expected
-	 */
-	public function testFormatErrors(
-		string $message,
-		int $exitCode,
-		int $numFileErrors,
-		int $numGenericErrors,
-		string $expected
-	): void
-	{
-		$relativePathHelper = new FuzzyRelativePathHelper(new NullRelativePathHelper(), self::DIRECTORY_PATH);
-		$formatter = new GithubErrorFormatter(
-			$relativePathHelper,
-			new TableErrorFormatter($relativePathHelper)
-		);
+    /**
+     * @dataProvider dataFormatterOutputProvider
+     *
+     * @param string $message
+     * @param int    $exitCode
+     * @param int    $numFileErrors
+     * @param int    $numGenericErrors
+     * @param string $expected
+     */
+    public function testFormatErrors(
+        string $message,
+        int $exitCode,
+        int $numFileErrors,
+        int $numGenericErrors,
+        string $expected
+    ): void {
+        $relativePathHelper = new FuzzyRelativePathHelper(new NullRelativePathHelper(), self::DIRECTORY_PATH);
+        $formatter = new GithubErrorFormatter(
+            $relativePathHelper,
+            new TableErrorFormatter($relativePathHelper)
+        );
 
-		$this->assertSame($exitCode, $formatter->formatErrors(
-			$this->getAnalysisResult($numFileErrors, $numGenericErrors),
-			$this->getOutput()
-		), sprintf('%s: response code do not match', $message));
+        $this->assertSame($exitCode, $formatter->formatErrors(
+            $this->getAnalysisResult($numFileErrors, $numGenericErrors),
+            $this->getOutput()
+        ), sprintf('%s: response code do not match', $message));
 
-		$this->assertEquals($expected, $this->getOutputContent(), sprintf('%s: output do not match', $message));
-	}
-
+        $this->assertEquals($expected, $this->getOutputContent(), sprintf('%s: output do not match', $message));
+    }
 }

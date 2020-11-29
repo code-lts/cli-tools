@@ -23,7 +23,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace CodeLts\CliTools\Tests;
 
@@ -40,91 +40,90 @@ use Symfony\Component\Console\Output\StreamOutput;
 abstract class ErrorFormatterTestCase extends \CodeLts\CliTools\Tests\AbstractTestCase
 {
 
-	protected const DIRECTORY_PATH = '/data/folder/with space/and unicode 😃/project';
+    protected const DIRECTORY_PATH = '/data/folder/with space/and unicode 😃/project';
 
-	/** @var StreamOutput|null */
-	private $outputStream = null;
+    /** @var StreamOutput|null */
+    private $outputStream = null;
 
-	/** @var Output|null */
-	private $output = null;
+    /** @var Output|null */
+    private $output = null;
 
-	private function getOutputStream(): StreamOutput
-	{
-		if (PHP_VERSION_ID >= 80000 && DIRECTORY_SEPARATOR === '\\') {
-			$this->markTestSkipped('Skipped because of https://github.com/symfony/symfony/issues/37508');
-		}
-		if ($this->outputStream === null) {
-			$resource = fopen('php://memory', 'w', false);
-			if ($resource === false) {
-				throw new Exception('This should not happen');
-			}
-			$this->outputStream = new StreamOutput($resource);
-		}
+    private function getOutputStream(): StreamOutput
+    {
+        if (PHP_VERSION_ID >= 80000 && DIRECTORY_SEPARATOR === '\\') {
+            $this->markTestSkipped('Skipped because of https://github.com/symfony/symfony/issues/37508');
+        }
+        if ($this->outputStream === null) {
+            $resource = fopen('php://memory', 'w', false);
+            if ($resource === false) {
+                throw new Exception('This should not happen');
+            }
+            $this->outputStream = new StreamOutput($resource);
+        }
 
-		return $this->outputStream;
-	}
+        return $this->outputStream;
+    }
 
-	protected function getOutput(): Output
-	{
-		if ($this->output === null) {
-			$errorConsoleStyle = new ErrorsConsoleStyle(new StringInput(''), $this->getOutputStream());
-			$this->output = new SymfonyOutput($this->getOutputStream(), new SymfonyStyle($errorConsoleStyle));
-		}
+    protected function getOutput(): Output
+    {
+        if ($this->output === null) {
+            $errorConsoleStyle = new ErrorsConsoleStyle(new StringInput(''), $this->getOutputStream());
+            $this->output = new SymfonyOutput($this->getOutputStream(), new SymfonyStyle($errorConsoleStyle));
+        }
 
-		return $this->output;
-	}
+        return $this->output;
+    }
 
-	protected function getOutputContent(): string
-	{
-		rewind($this->getOutputStream()->getStream());
+    protected function getOutputContent(): string
+    {
+        rewind($this->getOutputStream()->getStream());
 
-		$contents = stream_get_contents($this->getOutputStream()->getStream());
-		if ($contents === false) {
-			throw new Exception('This should not happen');
-		}
+        $contents = stream_get_contents($this->getOutputStream()->getStream());
+        if ($contents === false) {
+            throw new Exception('This should not happen');
+        }
 
-		return $this->rtrimMultiline($contents);
-	}
+        return $this->rtrimMultiline($contents);
+    }
 
-	protected function getAnalysisResult(int $numFileErrors, int $numGenericErrors, int $numWarnings = 0): AnalysisResult
-	{
-		if ($numFileErrors > 4 || $numFileErrors < 0 || $numGenericErrors > 2 || $numGenericErrors < 0) {
-			throw new \Exception('Test case error');
-		}
+    protected function getAnalysisResult(int $numFileErrors, int $numGenericErrors, int $numWarnings = 0): AnalysisResult
+    {
+        if ($numFileErrors > 4 || $numFileErrors < 0 || $numGenericErrors > 2 || $numGenericErrors < 0) {
+            throw new \Exception('Test case error');
+        }
 
-		$fileErrors = array_slice([
-			new Error('Foo', self::DIRECTORY_PATH . '/folder with unicode 😃/file name with "spaces" and unicode 😃.php', 4),
-			new Error('Foo', self::DIRECTORY_PATH . '/foo.php', 1),
-			new Error("Bar\nBar2", self::DIRECTORY_PATH . '/foo.php', 5),
-			new Error("Bar\nBar2", self::DIRECTORY_PATH . '/folder with unicode 😃/file name with "spaces" and unicode 😃.php', 2),
-		], 0, $numFileErrors);
+        $fileErrors = array_slice([
+            new Error('Foo', self::DIRECTORY_PATH . '/folder with unicode 😃/file name with "spaces" and unicode 😃.php', 4),
+            new Error('Foo', self::DIRECTORY_PATH . '/foo.php', 1),
+            new Error("Bar\nBar2", self::DIRECTORY_PATH . '/foo.php', 5),
+            new Error("Bar\nBar2", self::DIRECTORY_PATH . '/folder with unicode 😃/file name with "spaces" and unicode 😃.php', 2),
+        ], 0, $numFileErrors);
 
-		$genericErrors = array_slice([
-			'first generic error',
-			'second generic error',
-		], 0, $numGenericErrors);
+        $genericErrors = array_slice([
+            'first generic error',
+            'second generic error',
+        ], 0, $numGenericErrors);
 
-		$warnings = array_slice([
-			'first warning',
-			'second 😃 warning',
-			'3rd warning !',
-		], 0, $numWarnings);
+        $warnings = array_slice([
+            'first warning',
+            'second 😃 warning',
+            '3rd warning !',
+        ], 0, $numWarnings);
 
-		return new AnalysisResult(
-			$fileErrors,
-			$genericErrors,
-			[],
-			$warnings
-		);
-	}
+        return new AnalysisResult(
+            $fileErrors,
+            $genericErrors,
+            [],
+            $warnings
+        );
+    }
 
-	private function rtrimMultiline(string $output): string
-	{
-		$result = array_map(static function (string $line): string {
-			return rtrim($line, " \r\n");
-		}, explode("\n", $output));
+    private function rtrimMultiline(string $output): string
+    {
+        $result = array_map(static function (string $line): string {
+            return rtrim($line, " \r\n");
+        }, explode("\n", $output));
 
-		return implode("\n", $result);
-	}
-
+        return implode("\n", $result);
+    }
 }

@@ -23,7 +23,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace CodeLts\CliTools\Tests\ErrorFormatter;
 
@@ -35,28 +35,28 @@ use CodeLts\CliTools\Tests\ErrorFormatterTestCase;
 class TableErrorFormatterTest extends ErrorFormatterTestCase
 {
 
-	/**
-	 * @return iterable<array>
-	 */
-	public function dataFormatterOutputProvider(): iterable
-	{
-		yield [
-			'No errors',
-			0,
-			0,
-			0,
-			'
+    /**
+     * @return iterable<array>
+     */
+    public function dataFormatterOutputProvider(): iterable
+    {
+        yield [
+            'No errors',
+            0,
+            0,
+            0,
+            '
  [OK] No errors
 
 ',
-		];
+        ];
 
-		yield [
-			'One file error',
-			1,
-			1,
-			0,
-			' ------ -----------------------------------------------------------------
+        yield [
+            'One file error',
+            1,
+            1,
+            0,
+            ' ------ -----------------------------------------------------------------
   Line   folder with unicode 😃/file name with "spaces" and unicode 😃.php
  ------ -----------------------------------------------------------------
   4      Foo
@@ -65,14 +65,14 @@ class TableErrorFormatterTest extends ErrorFormatterTestCase
  [ERROR] Found 1 error
 
 ',
-		];
+        ];
 
-		yield [
-			'One generic error',
-			1,
-			0,
-			1,
-			' -- ---------------------
+        yield [
+            'One generic error',
+            1,
+            0,
+            1,
+            ' -- ---------------------
      Error
  -- ---------------------
      first generic error
@@ -81,14 +81,14 @@ class TableErrorFormatterTest extends ErrorFormatterTestCase
  [ERROR] Found 1 error
 
 ',
-		];
+        ];
 
-		yield [
-			'Multiple file errors',
-			1,
-			4,
-			0,
-			' ------ -----------------------------------------------------------------
+        yield [
+            'Multiple file errors',
+            1,
+            4,
+            0,
+            ' ------ -----------------------------------------------------------------
   Line   folder with unicode 😃/file name with "spaces" and unicode 😃.php
  ------ -----------------------------------------------------------------
   2      Bar
@@ -107,14 +107,14 @@ class TableErrorFormatterTest extends ErrorFormatterTestCase
  [ERROR] Found 4 errors
 
 ',
-		];
+        ];
 
-		yield [
-			'Multiple generic errors',
-			1,
-			0,
-			2,
-			' -- ----------------------
+        yield [
+            'Multiple generic errors',
+            1,
+            0,
+            2,
+            ' -- ----------------------
      Error
  -- ----------------------
      first generic error
@@ -124,14 +124,14 @@ class TableErrorFormatterTest extends ErrorFormatterTestCase
  [ERROR] Found 2 errors
 
 ',
-		];
+        ];
 
-		yield [
-			'Multiple file, multiple generic errors',
-			1,
-			4,
-			2,
-			' ------ -----------------------------------------------------------------
+        yield [
+            'Multiple file, multiple generic errors',
+            1,
+            4,
+            2,
+            ' ------ -----------------------------------------------------------------
   Line   folder with unicode 😃/file name with "spaces" and unicode 😃.php
  ------ -----------------------------------------------------------------
   2      Bar
@@ -157,34 +157,32 @@ class TableErrorFormatterTest extends ErrorFormatterTestCase
  [ERROR] Found 6 errors
 
 ',
-		];
-	}
+        ];
+    }
 
-	/**
-	 * @dataProvider dataFormatterOutputProvider
-	 *
-	 * @param string $message
-	 * @param int    $exitCode
-	 * @param int    $numFileErrors
-	 * @param int    $numGenericErrors
-	 * @param string $expected
-	 */
-	public function testFormatErrors(
-		string $message,
-		int $exitCode,
-		int $numFileErrors,
-		int $numGenericErrors,
-		string $expected
-	): void
-	{
-		$formatter = new TableErrorFormatter(new FuzzyRelativePathHelper(new NullRelativePathHelper(), self::DIRECTORY_PATH));
+    /**
+     * @dataProvider dataFormatterOutputProvider
+     *
+     * @param string $message
+     * @param int    $exitCode
+     * @param int    $numFileErrors
+     * @param int    $numGenericErrors
+     * @param string $expected
+     */
+    public function testFormatErrors(
+        string $message,
+        int $exitCode,
+        int $numFileErrors,
+        int $numGenericErrors,
+        string $expected
+    ): void {
+        $formatter = new TableErrorFormatter(new FuzzyRelativePathHelper(new NullRelativePathHelper(), self::DIRECTORY_PATH));
 
-		$this->assertSame($exitCode, $formatter->formatErrors(
-			$this->getAnalysisResult($numFileErrors, $numGenericErrors),
-			$this->getOutput()
-		), sprintf('%s: response code do not match', $message));
+        $this->assertSame($exitCode, $formatter->formatErrors(
+            $this->getAnalysisResult($numFileErrors, $numGenericErrors),
+            $this->getOutput()
+        ), sprintf('%s: response code do not match', $message));
 
-		$this->assertEquals($expected, $this->getOutputContent(), sprintf('%s: output do not match', $message));
-	}
-
+        $this->assertEquals($expected, $this->getOutputContent(), sprintf('%s: output do not match', $message));
+    }
 }

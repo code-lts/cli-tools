@@ -23,24 +23,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace CodeLts\CliTools\File;
 
 class FileWriter
 {
 
-	public static function write(string $fileName, string $contents): void
-	{
-		$success = @file_put_contents($fileName, $contents);
-		if ($success === false) {
-			$error = error_get_last();
+    public static function write(string $fileName, string $contents): void
+    {
+        $success = @file_put_contents($fileName, $contents);
+        if ($success === false) {
+            $error = error_get_last();
 
-			throw new \CodeLts\CliTools\File\CouldNotWriteFileException(
-				$fileName,
-				$error !== null ? $error['message'] : 'unknown cause'
-			);
-		}
-	}
-
+            throw new \CodeLts\CliTools\File\CouldNotWriteFileException(
+                $fileName,
+                $error !== null ? $error['message'] : 'unknown cause'
+            );
+        }
+    }
 }

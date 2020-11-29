@@ -23,27 +23,26 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace CodeLts\CliTools\File;
 
 class PathNotFoundException extends \Exception
 {
 
-	/**
-	 * @var string
-	 */
-	private $path;
+    /**
+     * @var string
+     */
+    private $path;
 
-	public function __construct(string $path)
-	{
-		parent::__construct(sprintf('Path %s does not exist', $path));
-		$this->path = $path;
-	}
+    public function __construct(string $path)
+    {
+        parent::__construct(sprintf('Path %s does not exist', $path));
+        $this->path = $path;
+    }
 
-	public function getPath(): string
-	{
-		return $this->path;
-	}
-
+    public function getPath(): string
+    {
+        return $this->path;
+    }
 }

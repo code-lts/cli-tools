@@ -23,7 +23,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace CodeLts\CliTools\ErrorFormatter;
 
@@ -33,56 +33,55 @@ use CodeLts\CliTools\Output;
 class JsonErrorFormatter implements ErrorFormatter
 {
 
-	/**
-	 * @var bool
-	 */
-	private $pretty;
+    /**
+     * @var bool
+     */
+    private $pretty;
 
-	public function __construct(bool $pretty)
-	{
-		$this->pretty = $pretty;
-	}
+    public function __construct(bool $pretty)
+    {
+        $this->pretty = $pretty;
+    }
 
-	public function formatErrors(AnalysisResult $analysisResult, Output $output): int
-	{
-		$errorsArray = [
-			'totals' => [
-				'errors' => count($analysisResult->getNotFileSpecificErrors()),
-				'file_errors' => count($analysisResult->getFileSpecificErrors()),
-			],
-			'files' => [],
-			'errors' => [],
-		];
+    public function formatErrors(AnalysisResult $analysisResult, Output $output): int
+    {
+        $errorsArray = [
+            'totals' => [
+                'errors' => count($analysisResult->getNotFileSpecificErrors()),
+                'file_errors' => count($analysisResult->getFileSpecificErrors()),
+            ],
+            'files' => [],
+            'errors' => [],
+        ];
 
-		foreach ($analysisResult->getFileSpecificErrors() as $fileSpecificError) {
-			$file = $fileSpecificError->getFile();
-			if ($file === null) {
-				continue;
-			}
-			if (!array_key_exists($file, $errorsArray['files'])) {
-				$errorsArray['files'][$file] = [
-					'errors' => 0,
-					'messages' => [],
-				];
-			}
-			$errorsArray['files'][$file]['errors']++;
+        foreach ($analysisResult->getFileSpecificErrors() as $fileSpecificError) {
+            $file = $fileSpecificError->getFile();
+            if ($file === null) {
+                continue;
+            }
+            if (!array_key_exists($file, $errorsArray['files'])) {
+                $errorsArray['files'][$file] = [
+                    'errors' => 0,
+                    'messages' => [],
+                ];
+            }
+            $errorsArray['files'][$file]['errors']++;
 
-			$errorsArray['files'][$file]['messages'][] = [
-				'message' => $fileSpecificError->getMessage(),
-				'line' => $fileSpecificError->getLine(),
-				'ignorable' => $fileSpecificError->canBeIgnored(),
-			];
-		}
+            $errorsArray['files'][$file]['messages'][] = [
+                'message' => $fileSpecificError->getMessage(),
+                'line' => $fileSpecificError->getLine(),
+                'ignorable' => $fileSpecificError->canBeIgnored(),
+            ];
+        }
 
-		foreach ($analysisResult->getNotFileSpecificErrors() as $notFileSpecificError) {
-			$errorsArray['errors'][] = $notFileSpecificError;
-		}
+        foreach ($analysisResult->getNotFileSpecificErrors() as $notFileSpecificError) {
+            $errorsArray['errors'][] = $notFileSpecificError;
+        }
 
-		$json = json_encode($errorsArray, $this->pretty ? JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT : JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+        $json = json_encode($errorsArray, $this->pretty ? JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT : JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 
-		$output->writeRaw((string) $json);
+        $output->writeRaw((string) $json);
 
-		return $analysisResult->hasErrors() ? 1 : 0;
-	}
-
+        return $analysisResult->hasErrors() ? 1 : 0;
+    }
 }

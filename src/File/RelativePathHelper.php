@@ -23,13 +23,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace CodeLts\CliTools\File;
 
 interface RelativePathHelper
 {
 
-	public function getRelativePath(string $filename): string;
-
+    public function getRelativePath(string $filename): string;
 }

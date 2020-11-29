@@ -23,91 +23,86 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace CodeLts\CliTools\File;
 
 class FuzzyRelativePathHelper implements RelativePathHelper
 {
 
-	/**
-	 * @var RelativePathHelper
-	 */
-	private $fallbackRelativePathHelper;
+    /**
+     * @var RelativePathHelper
+     */
+    private $fallbackRelativePathHelper;
 
-	/**
-	 * @var string
-	 */
-	private $directorySeparator;
+    /**
+     * @var string
+     */
+    private $directorySeparator;
 
-	/**
-	 * @var string|null
-	 */
-	private $pathToTrim = null;
+    /**
+     * @var string|null
+     */
+    private $pathToTrim = null;
 
-	/**
-	 * @param RelativePathHelper $fallbackRelativePathHelper
-	 * @param string $currentWorkingDirectory
-	 */
-	public function __construct(
-		RelativePathHelper $fallbackRelativePathHelper,
-		string $currentWorkingDirectory
-	)
-	{
-		$this->fallbackRelativePathHelper = $fallbackRelativePathHelper;
+    /**
+     * @param RelativePathHelper $fallbackRelativePathHelper
+     * @param string $currentWorkingDirectory
+     */
+    public function __construct(
+        RelativePathHelper $fallbackRelativePathHelper,
+        string $currentWorkingDirectory
+    ) {
+        $this->fallbackRelativePathHelper = $fallbackRelativePathHelper;
 
-		$this->directorySeparator = DIRECTORY_SEPARATOR;
-		$pathBeginning = null;
-		$pathToTrimArray = null;
-		$trimBeginning = static function (string $path): array {
-			if (substr($path, 0, 1) === '/') {
-				return [
-					'/',
-					substr($path, 1),
-				];
-			} elseif (substr($path, 1, 1) === ':') {
-				return [
-					substr($path, 0, 3),
-					substr($path, 3),
-				];
-			}
+        $this->directorySeparator = DIRECTORY_SEPARATOR;
+        $pathBeginning = null;
+        $pathToTrimArray = null;
+        $trimBeginning = static function (string $path): array {
+            if (substr($path, 0, 1) === '/') {
+                return [
+                    '/',
+                    substr($path, 1),
+                ];
+            } elseif (substr($path, 1, 1) === ':') {
+                return [
+                    substr($path, 0, 3),
+                    substr($path, 3),
+                ];
+            }
 
-			return ['', $path];
-		};
+            return ['', $path];
+        };
 
-		if (
-			!in_array($currentWorkingDirectory, ['', '/'], true)
-			&& !(strlen($currentWorkingDirectory) === 3 && substr($currentWorkingDirectory, 1, 1) === ':')
-		) {
-			[$pathBeginning, $currentWorkingDirectory] = $trimBeginning($currentWorkingDirectory);
+        $cwdNotRootAndNotEmpty = ! in_array($currentWorkingDirectory, ['', '/'], true);
+        $length3AndFoundChar = !(strlen($currentWorkingDirectory) === 3 && substr($currentWorkingDirectory, 1, 1) === ':');
 
-			/** @var string[] $pathToTrimArray */
-			$pathToTrimArray = explode($this->directorySeparator, $currentWorkingDirectory);
-		}
+        if ($cwdNotRootAndNotEmpty && $length3AndFoundChar) {
+            [$pathBeginning, $currentWorkingDirectory] = $trimBeginning($currentWorkingDirectory);
 
-		if ($pathToTrimArray === null || count($pathToTrimArray) === 0) {
-			return;
-		}
+            /** @var string[] $pathToTrimArray */
+            $pathToTrimArray = explode($this->directorySeparator, $currentWorkingDirectory);
+        }
 
-		$pathToTrim = $pathBeginning . implode($this->directorySeparator, $pathToTrimArray);
-		$realPathToTrim = realpath($pathToTrim);
-		if ($realPathToTrim !== false) {
-			$pathToTrim = $realPathToTrim;
-		}
+        if ($pathToTrimArray === null || count($pathToTrimArray) === 0) {
+            return;
+        }
 
-		$this->pathToTrim = $pathToTrim;
-	}
+        $pathToTrim = $pathBeginning . implode($this->directorySeparator, $pathToTrimArray);
+        $realPathToTrim = realpath($pathToTrim);
+        if ($realPathToTrim !== false) {
+            $pathToTrim = $realPathToTrim;
+        }
 
-	public function getRelativePath(string $filename): string
-	{
-		if (
-			$this->pathToTrim !== null
-			&& strpos($filename, $this->pathToTrim) === 0
-		) {
-			return ltrim(substr($filename, strlen($this->pathToTrim)), $this->directorySeparator);
-		}
+        $this->pathToTrim = $pathToTrim;
+    }
 
-		return $this->fallbackRelativePathHelper->getRelativePath($filename);
-	}
+    public function getRelativePath(string $filename): string
+    {
+        if ($this->pathToTrim !== null && strpos($filename, $this->pathToTrim) === 0) {
+            return ltrim(substr($filename, strlen($this->pathToTrim)), $this->directorySeparator);
+        }
 
+        return $this->fallbackRelativePathHelper->getRelativePath($filename);
+    }
 }

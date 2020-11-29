@@ -23,7 +23,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace CodeLts\CliTools\ErrorFormatter;
 
@@ -33,16 +33,15 @@ use CodeLts\CliTools\Output;
 interface ErrorFormatter
 {
 
-	/**
-	 * Formats the errors and outputs them to the console.
-	 *
-	 * @param \CodeLts\CliTools\AnalysisResult $analysisResult
-	 * @param \CodeLts\CliTools\Output $output
-	 * @return int Error code.
-	 */
-	public function formatErrors(
-		AnalysisResult $analysisResult,
-		Output $output
-	): int;
-
+    /**
+     * Formats the errors and outputs them to the console.
+     *
+     * @param \CodeLts\CliTools\AnalysisResult $analysisResult
+     * @param \CodeLts\CliTools\Output $output
+     * @return int Error code.
+     */
+    public function formatErrors(
+        AnalysisResult $analysisResult,
+        Output $output
+    ): int;
 }

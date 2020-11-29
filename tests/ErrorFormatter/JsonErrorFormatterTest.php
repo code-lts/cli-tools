@@ -23,7 +23,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace CodeLts\CliTools\Tests\ErrorFormatter;
 
@@ -33,17 +33,17 @@ use CodeLts\CliTools\Tests\ErrorFormatterTestCase;
 class JsonErrorFormatterTest extends ErrorFormatterTestCase
 {
 
-	/**
-	 * @return iterable<array>
-	 */
-	public function dataFormatterOutputProvider(): iterable
-	{
-		yield [
-			'No errors',
-			0,
-			0,
-			0,
-			'
+    /**
+     * @return iterable<array>
+     */
+    public function dataFormatterOutputProvider(): iterable
+    {
+        yield [
+            'No errors',
+            0,
+            0,
+            0,
+            '
 {
 	"totals":{
 		"errors":0,
@@ -52,14 +52,14 @@ class JsonErrorFormatterTest extends ErrorFormatterTestCase
 	"files":[],
 	"errors": []
 }',
-		];
+        ];
 
-		yield [
-			'One file error',
-			1,
-			1,
-			0,
-			'
+        yield [
+            'One file error',
+            1,
+            1,
+            0,
+            '
 {
 	"totals":{
 		"errors":0,
@@ -79,14 +79,14 @@ class JsonErrorFormatterTest extends ErrorFormatterTestCase
 	},
 	"errors": []
 }',
-		];
+        ];
 
-		yield [
-			'One generic error',
-			1,
-			0,
-			1,
-			'
+        yield [
+            'One generic error',
+            1,
+            0,
+            1,
+            '
 {
 	"totals":{
 		"errors":1,
@@ -97,14 +97,14 @@ class JsonErrorFormatterTest extends ErrorFormatterTestCase
 		"first generic error"
 	]
 }',
-		];
+        ];
 
-		yield [
-			'Multiple file errors',
-			1,
-			4,
-			0,
-			'
+        yield [
+            'Multiple file errors',
+            1,
+            4,
+            0,
+            '
 {
 	"totals":{
 		"errors":0,
@@ -144,14 +144,14 @@ class JsonErrorFormatterTest extends ErrorFormatterTestCase
 	},
 	"errors": []
 }',
-		];
+        ];
 
-		yield [
-			'Multiple generic errors',
-			1,
-			0,
-			2,
-			'
+        yield [
+            'Multiple generic errors',
+            1,
+            0,
+            2,
+            '
 {
 	"totals":{
 		"errors":2,
@@ -163,14 +163,14 @@ class JsonErrorFormatterTest extends ErrorFormatterTestCase
 		"second generic error"
 	]
 }',
-		];
+        ];
 
-		yield [
-			'Multiple file, multiple generic errors',
-			1,
-			4,
-			2,
-			'
+        yield [
+            'Multiple file, multiple generic errors',
+            1,
+            4,
+            2,
+            '
 {
 	"totals":{
 		"errors":2,
@@ -213,62 +213,59 @@ class JsonErrorFormatterTest extends ErrorFormatterTestCase
 		"second generic error"
 	]
 }',
-		];
-	}
+        ];
+    }
 
-	/**
-	 * @dataProvider dataFormatterOutputProvider
-	 *
-	 * @param string $message
-	 * @param int    $exitCode
-	 * @param int    $numFileErrors
-	 * @param int    $numGenericErrors
-	 * @param string $expected
-	 */
-	public function testPrettyFormatErrors(
-		string $message,
-		int $exitCode,
-		int $numFileErrors,
-		int $numGenericErrors,
-		string $expected
-	): void
-	{
-		$formatter = new JsonErrorFormatter(true);
+    /**
+     * @dataProvider dataFormatterOutputProvider
+     *
+     * @param string $message
+     * @param int    $exitCode
+     * @param int    $numFileErrors
+     * @param int    $numGenericErrors
+     * @param string $expected
+     */
+    public function testPrettyFormatErrors(
+        string $message,
+        int $exitCode,
+        int $numFileErrors,
+        int $numGenericErrors,
+        string $expected
+    ): void {
+        $formatter = new JsonErrorFormatter(true);
 
-		$this->assertSame($exitCode, $formatter->formatErrors(
-			$this->getAnalysisResult($numFileErrors, $numGenericErrors),
-			$this->getOutput()
-		), $message);
+        $this->assertSame($exitCode, $formatter->formatErrors(
+            $this->getAnalysisResult($numFileErrors, $numGenericErrors),
+            $this->getOutput()
+        ), $message);
 
-		$this->assertJsonStringEqualsJsonString($expected, $this->getOutputContent());
-	}
+        $this->assertJsonStringEqualsJsonString($expected, $this->getOutputContent());
+    }
 
-	/**
-	 * @dataProvider dataFormatterOutputProvider
-	 *
-	 * @param string $message
-	 * @param int    $exitCode
-	 * @param int    $numFileErrors
-	 * @param int    $numGenericErrors
-	 * @param string $expected
-	 *
-	 */
-	public function testFormatErrors(
-		string $message,
-		int $exitCode,
-		int $numFileErrors,
-		int $numGenericErrors,
-		string $expected
-	): void
-	{
-		$formatter = new JsonErrorFormatter(false);
+    /**
+     * @dataProvider dataFormatterOutputProvider
+     *
+     * @param string $message
+     * @param int    $exitCode
+     * @param int    $numFileErrors
+     * @param int    $numGenericErrors
+     * @param string $expected
+     *
+     */
+    public function testFormatErrors(
+        string $message,
+        int $exitCode,
+        int $numFileErrors,
+        int $numGenericErrors,
+        string $expected
+    ): void {
+        $formatter = new JsonErrorFormatter(false);
 
-		$this->assertSame($exitCode, $formatter->formatErrors(
-			$this->getAnalysisResult($numFileErrors, $numGenericErrors),
-			$this->getOutput()
-		), sprintf('%s: response code do not match', $message));
+        $this->assertSame($exitCode, $formatter->formatErrors(
+            $this->getAnalysisResult($numFileErrors, $numGenericErrors),
+            $this->getOutput()
+        ), sprintf('%s: response code do not match', $message));
 
-		$this->assertJsonStringEqualsJsonString($expected, $this->getOutputContent(), sprintf('%s: JSON do not match', $message));
-	}
-
+        $this->assertJsonStringEqualsJsonString($expected, $this->getOutputContent(), sprintf('%s: JSON do not match', $message));
+    }
 }

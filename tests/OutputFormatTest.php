@@ -85,5 +85,4 @@ class OutputFormatTest extends ErrorFormatterTestCase
         $outputContent = $this->getOutputContent();
         $this->assertNotEmpty($outputContent);
     }
-
 }

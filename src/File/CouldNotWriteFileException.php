@@ -23,21 +23,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace CodeLts\CliTools\File;
 
 class CouldNotWriteFileException extends \Exception
 {
 
-	public function __construct(string $fileName, string $error)
-	{
-		parent::__construct(sprintf('Could not write file: %s (%s)', $fileName, $error));
-	}
+    public function __construct(string $fileName, string $error)
+    {
+        parent::__construct(sprintf('Could not write file: %s (%s)', $fileName, $error));
+    }
 
-	public function getTip(): ?string
-	{
-		return null;
-	}
-
+    public function getTip(): ?string
+    {
+        return null;
+    }
 }

@@ -19,7 +19,6 @@ use CodeLts\CliTools\File\FuzzyRelativePathHelper;
 use CodeLts\CliTools\File\NullRelativePathHelper;
 use CodeLts\CliTools\File\RelativePathHelper;
 use CodeLts\CliTools\File\SimpleRelativePathHelper;
-use Exception;
 
 class OutputFormat
 {

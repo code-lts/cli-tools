@@ -23,7 +23,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace CodeLts\CliTools;
 
@@ -32,102 +32,100 @@ use CodeLts\CliTools\Error;
 class AnalysisResult
 {
 
-	/** @var \CodeLts\CliTools\Error[] sorted by their file name, line number and message */
-	private $fileSpecificErrors;
+    /** @var \CodeLts\CliTools\Error[] sorted by their file name, line number and message */
+    private $fileSpecificErrors;
 
-	/** @var string[] */
-	private $notFileSpecificErrors;
+    /** @var string[] */
+    private $notFileSpecificErrors;
 
-	/** @var string[] */
-	private $internalErrors;
+    /** @var string[] */
+    private $internalErrors;
 
-	/** @var string[] */
-	private $warnings;
+    /** @var string[] */
+    private $warnings;
 
-	/**
-	 * @param \CodeLts\CliTools\Error[] $fileSpecificErrors
-	 * @param string[] $notFileSpecificErrors
-	 * @param string[] $internalErrors
-	 * @param string[] $warnings
-	 */
-	public function __construct(
-		array $fileSpecificErrors,
-		array $notFileSpecificErrors,
-		array $internalErrors,
-		array $warnings
-	)
-	{
-		usort(
-			$fileSpecificErrors,
-			static function (Error $a, Error $b): int {
-				return [
-					$a->getFile(),
-					$a->getLine(),
-					$a->getMessage(),
-				] <=> [
-					$b->getFile(),
-					$b->getLine(),
-					$b->getMessage(),
-				];
-			}
-		);
+    /**
+     * @param \CodeLts\CliTools\Error[] $fileSpecificErrors
+     * @param string[] $notFileSpecificErrors
+     * @param string[] $internalErrors
+     * @param string[] $warnings
+     */
+    public function __construct(
+        array $fileSpecificErrors,
+        array $notFileSpecificErrors,
+        array $internalErrors,
+        array $warnings
+    ) {
+        usort(
+            $fileSpecificErrors,
+            static function (Error $a, Error $b): int {
+                return [
+                    $a->getFile(),
+                    $a->getLine(),
+                    $a->getMessage(),
+                ] <=> [
+                    $b->getFile(),
+                    $b->getLine(),
+                    $b->getMessage(),
+                ];
+            }
+        );
 
-		$this->fileSpecificErrors = $fileSpecificErrors;
-		$this->notFileSpecificErrors = $notFileSpecificErrors;
-		$this->internalErrors = $internalErrors;
-		$this->warnings = $warnings;
-	}
+        $this->fileSpecificErrors = $fileSpecificErrors;
+        $this->notFileSpecificErrors = $notFileSpecificErrors;
+        $this->internalErrors = $internalErrors;
+        $this->warnings = $warnings;
+    }
 
-	public function hasErrors(): bool
-	{
-		return $this->getTotalErrorsCount() > 0;
-	}
+    public function hasErrors(): bool
+    {
+        return $this->getTotalErrorsCount() > 0;
+    }
 
-	public function getTotalErrorsCount(): int
-	{
-		return count($this->fileSpecificErrors) + count($this->notFileSpecificErrors);
-	}
+    public function getTotalErrorsCount(): int
+    {
+        return count($this->fileSpecificErrors) + count($this->notFileSpecificErrors);
+    }
 
-	/**
-	 * @return \CodeLts\CliTools\Error[] sorted by their file name, line number and message
-	 */
-	public function getFileSpecificErrors(): array
-	{
-		return $this->fileSpecificErrors;
-	}
+    /**
+     * @return \CodeLts\CliTools\Error[] sorted by their file name, line number and message
+     */
+    public function getFileSpecificErrors(): array
+    {
+        return $this->fileSpecificErrors;
+    }
 
-	/**
-	 * @return string[]
-	 */
-	public function getNotFileSpecificErrors(): array
-	{
-		return $this->notFileSpecificErrors;
-	}
+    /**
+     * @return string[]
+     */
+    public function getNotFileSpecificErrors(): array
+    {
+        return $this->notFileSpecificErrors;
+    }
 
-	/**
-	 * @return string[]
-	 */
-	public function getInternalErrors(): array
-	{
-		return $this->internalErrors;
-	}
+    /**
+     * @return string[]
+     */
+    public function getInternalErrors(): array
+    {
+        return $this->internalErrors;
+    }
 
-	/**
-	 * @return string[]
-	 */
-	public function getWarnings(): array
-	{
-		return $this->warnings;
-	}
+    /**
+     * @return string[]
+     */
+    public function getWarnings(): array
+    {
+        return $this->warnings;
+    }
 
-	public function hasWarnings(): bool
-	{
-		return count($this->warnings) > 0;
-	}
+    public function hasWarnings(): bool
+    {
+        return count($this->warnings) > 0;
+    }
 
-	public function hasInternalErrors(): bool
-	{
-		return count($this->internalErrors) > 0;
-	}
-
+    public function hasInternalErrors(): bool
+    {
+        return count($this->internalErrors) > 0;
+    }
 }
