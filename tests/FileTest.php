@@ -13,7 +13,7 @@ class FileTest extends AbstractTestCase
 {
     public function testReadWriteFile(): void
     {
-        $fileName = tempnam(sys_get_temp_dir(), 'code-lts-cli-tools');
+        $fileName = (string) tempnam(sys_get_temp_dir(), 'code-lts-cli-tools');
         FileWriter::write(
             $fileName,
             'foobar'
@@ -33,6 +33,6 @@ class FileTest extends AbstractTestCase
     {
         $this->expectException(CouldNotWriteFileException::class);
         $this->expectExceptionMessage('Could not write file: / (file_put_contents(/): failed to open stream: Is a directory)');
-        $this->assertSame('foobar', FileWriter::write('/', ''));
+        FileWriter::write('/', '');
     }
 }
