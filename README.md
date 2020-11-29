@@ -13,6 +13,55 @@ Some code is copied from phpstan. See [#4122](https://github.com/phpstan/phpstan
 
 ## Example usages
 
+### Format errors
+
+```php
+use CodeLts\CliTools\Error;
+use CodeLts\CliTools\AnalysisResult;
+use CodeLts\CliTools\OutputFormat;
+use CodeLts\CliTools\Exceptions\FormatNotFoundException;
+
+// if the value is from an user input
+// Will throw FormatNotFoundException
+// See valid formats at OutputFormat::VALID_OUTPUT_FORMATS
+OutputFormat::checkOutputFormatIsValid('notValidFormat');
+
+$fileSpecificErrors = [
+    new Error(
+        'My error message',
+        '/file/path/to/File.php',
+        15 // Line number
+    ),
+];
+
+$notFileSpecificErrors = [
+    'Just an error message',
+];
+
+$internalErrors = [
+    'Oops the internal engine did crash !',
+];
+
+$warnings = [
+    'I warn you that most of this code is tested',
+    'Contributions are very welcome',
+];
+
+$analysisResult = new AnalysisResult(
+    $fileSpecificErrors,
+    $notFileSpecificErrors,
+    $internalErrors,
+    $warnings
+);
+
+OutputFormat::displayUserChoiceFormat(
+    OutputFormat::OUTPUT_FORMAT_TABLE,// The phpstan table error format, you can have a lot more formats in OutputFormat::VALID_OUTPUT_FORMATS
+    $analysisResult,
+    $this->sourceRootDirectory,// can be null, if null the error paths will not be pretty and will be displayed as given
+    $this->output // Implement CodeLts\CliTools\Output or use CodeLts\CliTools\Symfony\SymfonyOutput
+);
+```
+
 ### Read/Write files
 
 ```php
@@ -23,8 +72,16 @@ $fileName = 'myFile.txt';
 
 FileWriter::write(
     $fileName,
-    'the contents of your file'
+    'Some data, blob, blob, blob.'
 );
 
-FileReader::read($fileName);// -> the contents of your file
+FileReader::read($fileName);// -> Some data, blob, blob, blob.
+```
+
+### ANSI codes
+
+```php
+use CodeLts\CliTools\File\AnsiEscapeSequences;
+
+$this->output->writeFormatted(AnsiEscapeSequences::ERASE_TO_LINE_END);
 ```
