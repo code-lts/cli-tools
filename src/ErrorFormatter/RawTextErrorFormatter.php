@@ -15,20 +15,20 @@ class RawTextErrorFormatter implements ErrorFormatter
         Output $output
     ): int {
         foreach ($analysisResult->getNotFileSpecificErrors() as $notFileSpecificError) {
-            $output->writeRaw('<fg=red>ERROR</>: ');
-            $output->writeRaw($notFileSpecificError);
+            $output->writeFormatted('<fg=red>ERROR</>: ');
+            $output->writeLineFormatted($notFileSpecificError);
         }
 
         foreach ($analysisResult->getFileSpecificErrors() as $error) {
-            $output->writeRaw('<fg=red>ERROR</>: ');
-            $output->writeRaw(
+            $output->writeFormatted('<fg=red>ERROR</>: ');
+            $output->writeLineFormatted(
                 sprintf('%s in %s:%d', $error->getMessage(), $error->getFile() ?? '', $error->getLine())
             );
         }
 
         foreach ($analysisResult->getWarnings() as $warning) {
-            $output->writeRaw('<fg=yellow>WARNING</>: ');
-            $output->writeRaw($warning);
+            $output->writeFormatted('<fg=yellow>WARNING</>: ');
+            $output->writeLineFormatted($warning);
         }
 
 
