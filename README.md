@@ -10,3 +10,21 @@ CLI tools for managing output formatting
 
 Have formatters that I can re-use in projects to format errors.
 Some code is copied from phpstan. See [#4122](https://github.com/phpstan/phpstan/issues/4122)
+
+## Example usages
+
+### Read/Write files
+
+```php
+use CodeLts\CliTools\File\FileReader;
+use CodeLts\CliTools\File\FileWriter;
+
+$fileName = 'myFile.txt';
+
+FileWriter::write(
+    $fileName,
+    'the contents of your file'
+);
+
+FileReader::read($fileName);// -> the contents of your file
+```
