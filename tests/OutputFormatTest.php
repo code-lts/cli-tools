@@ -44,8 +44,8 @@ class OutputFormatTest extends ErrorFormatterTestCase
         $formatName = 'foo' . $formatName;
         $this->expectException(FormatNotFoundException::class);
         $this->expectExceptionMessage(
-            'Error formatter "' . $formatName . '" not found.'
-            . ' Available error formatters are: ' . $this->availablesFormats
+            'Error formatter "' . $formatName . '" is not implemented. Available error formatters are: '
+            . $this->availablesFormats
         );
         $this->assertTrue(OutputFormat::checkOutputFormatIsValid($formatName));
     }
