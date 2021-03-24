@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.x.x] - YYYY-MM-DD
 
+- Upgrade `ondram/ci-detector` to 4.0
+- Copy an upstream change, make the test suite run offline
+- Apply `wdes/coding-standard`
+- Update `.gitattributes` to remove `.editorconfig` for releases
+
 ## [1.3.1] - 2020-11-29
 
 - Fix RawTextErrorFormatter
