@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.x.x] - YYYY-MM-DD
 
+## [1.4.0] - 2021-03-24
+
 - Upgrade `ondram/ci-detector` to 4.0
 - Copy an upstream change, make the test suite run offline
 - Apply `wdes/coding-standard`
