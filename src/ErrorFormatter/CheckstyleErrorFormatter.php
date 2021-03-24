@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 /*
  * (c) Copyright (c) 2016-2020 Ondřej Mirtes <ondrej@mirtes.cz>
  *
@@ -23,7 +25,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-declare(strict_types=1);
 
 namespace CodeLts\CliTools\ErrorFormatter;
 
@@ -54,18 +55,22 @@ class CheckstyleErrorFormatter implements ErrorFormatter
         $output->writeLineFormatted('');
 
         foreach ($this->groupByFile($analysisResult) as $relativeFilePath => $errors) {
-            $output->writeRaw(sprintf(
-                '<file name="%s">',
-                $this->escape($relativeFilePath)
-            ));
+            $output->writeRaw(
+                sprintf(
+                    '<file name="%s">',
+                    $this->escape($relativeFilePath)
+                )
+            );
             $output->writeLineFormatted('');
 
             foreach ($errors as $error) {
-                $output->writeRaw(sprintf(
-                    '  <error line="%d" column="1" severity="error" message="%s" />',
-                    $this->escape((string) $error->getLine()),
-                    $this->escape((string) $error->getMessage())
-                ));
+                $output->writeRaw(
+                    sprintf(
+                        '  <error line="%d" column="1" severity="error" message="%s" />',
+                        $this->escape((string) $error->getLine()),
+                        $this->escape((string) $error->getMessage())
+                    )
+                );
                 $output->writeLineFormatted('');
             }
             $output->writeRaw('</file>');
@@ -143,4 +148,5 @@ class CheckstyleErrorFormatter implements ErrorFormatter
 
         return $files;
     }
+
 }

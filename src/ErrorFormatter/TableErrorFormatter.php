@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 /*
  * (c) Copyright (c) 2016-2020 Ondřej Mirtes <ondrej@mirtes.cz>
  *
@@ -23,11 +25,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-declare(strict_types=1);
 
 namespace CodeLts\CliTools\ErrorFormatter;
 
-use CodeLts\CliTools\AnalyseCommand;
 use CodeLts\CliTools\AnalysisResult;
 use CodeLts\CliTools\Output;
 use CodeLts\CliTools\File\RelativePathHelper;
@@ -50,7 +50,6 @@ class TableErrorFormatter implements ErrorFormatter
         AnalysisResult $analysisResult,
         Output $output
     ): int {
-
         $style = $output->getStyle();
 
         if (!$analysisResult->hasErrors() && !$analysisResult->hasWarnings()) {
@@ -74,7 +73,7 @@ class TableErrorFormatter implements ErrorFormatter
             foreach ($errors as $error) {
                 $message = $error->getMessage();
                 if ($error->getTip() !== null) {
-                    $tip = $error->getTip();
+                    $tip      = $error->getTip();
                     $message .= "\n💡 " . $tip;
                 }
                 $rows[] = [
@@ -89,16 +88,28 @@ class TableErrorFormatter implements ErrorFormatter
         }
 
         if (count($analysisResult->getNotFileSpecificErrors()) > 0) {
-            $style->table(['', 'Error'], array_map(static function (string $error): array {
-                return ['', $error];
-            }, $analysisResult->getNotFileSpecificErrors()));
+            $style->table(
+                ['', 'Error'],
+                array_map(
+                    static function (string $error): array {
+                        return ['', $error];
+                    },
+                    $analysisResult->getNotFileSpecificErrors()
+                )
+            );
         }
 
         $warningsCount = count($analysisResult->getWarnings());
         if ($warningsCount > 0) {
-            $style->table(['', 'Warning'], array_map(static function (string $warning): array {
-                return ['', $warning];
-            }, $analysisResult->getWarnings()));
+            $style->table(
+                ['', 'Warning'],
+                array_map(
+                    static function (string $warning): array {
+                        return ['', $warning];
+                    },
+                    $analysisResult->getWarnings()
+                )
+            );
         }
 
         $finalMessage = sprintf($analysisResult->getTotalErrorsCount() === 1 ? 'Found %d error' : 'Found %d errors', $analysisResult->getTotalErrorsCount());
@@ -114,4 +125,5 @@ class TableErrorFormatter implements ErrorFormatter
 
         return $analysisResult->getTotalErrorsCount() > 0 ? 1 : 0;
     }
+
 }

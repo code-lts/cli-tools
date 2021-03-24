@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace CodeLts\CliTools\ErrorFormatter;
 
@@ -34,4 +34,5 @@ class RawTextErrorFormatter implements ErrorFormatter
 
         return $analysisResult->hasErrors() ? 1 : 0;
     }
+
 }

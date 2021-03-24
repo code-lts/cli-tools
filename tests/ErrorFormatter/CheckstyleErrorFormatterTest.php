@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 /*
  * (c) Copyright (c) 2016-2020 Ondřej Mirtes <ondrej@mirtes.cz>
  *
@@ -23,7 +25,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-declare(strict_types=1);
 
 namespace CodeLts\CliTools\Tests\ErrorFormatter;
 
@@ -156,10 +157,14 @@ class CheckstyleErrorFormatterTest extends ErrorFormatterTestCase
     ): void {
         $formatter = new CheckstyleErrorFormatter(new SimpleRelativePathHelper(self::DIRECTORY_PATH));
 
-        $this->assertSame($exitCode, $formatter->formatErrors(
-            $this->getAnalysisResult($numFileErrors, $numGenericErrors),
-            $this->getOutput()
-        ), sprintf('%s: response code do not match', $message));
+        $this->assertSame(
+            $exitCode,
+            $formatter->formatErrors(
+                $this->getAnalysisResult($numFileErrors, $numGenericErrors),
+                $this->getOutput()
+            ),
+            sprintf('%s: response code do not match', $message)
+        );
 
         $outputContent = $this->getOutputContent();
         $this->assertXmlStringEqualsXmlString($expected, $outputContent, sprintf('%s: XML do not match', $message));
@@ -169,21 +174,28 @@ class CheckstyleErrorFormatterTest extends ErrorFormatterTestCase
     public function testTraitPath(): void
     {
         $formatter = new CheckstyleErrorFormatter(new SimpleRelativePathHelper(__DIR__));
-        $error = new Error(
+        $error     = new Error(
             'Foo',
             __DIR__ . '/FooTrait.php',
             5
         );
-        $formatter->formatErrors(new AnalysisResult(
-            [$error],
-            [],
-            [],
-            []
-        ), $this->getOutput());
-        $this->assertXmlStringEqualsXmlString('<checkstyle>
+        $formatter->formatErrors(
+            new AnalysisResult(
+                [$error],
+                [],
+                [],
+                []
+            ),
+            $this->getOutput()
+        );
+        $this->assertXmlStringEqualsXmlString(
+            '<checkstyle>
 	<file name="FooTrait.php">
 		<error column="1" line="5" message="Foo" severity="error"/>
 	</file>
-</checkstyle>', $this->getOutputContent());
+</checkstyle>',
+            $this->getOutputContent()
+        );
     }
+
 }

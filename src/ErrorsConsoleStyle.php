@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 /*
  * (c) Copyright (c) 2016-2020 Ondřej Mirtes <ondrej@mirtes.cz>
  *
@@ -23,11 +25,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-declare(strict_types=1);
 
 namespace CodeLts\CliTools;
 
-use OndraM\CiDetector\CiDetector;
 use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -68,7 +68,7 @@ class ErrorsConsoleStyle extends \Symfony\Component\Console\Style\SymfonyStyle
     public function table(array $headers, array $rows): void
     {
         /** @var int $terminalWidth */
-        $terminalWidth = (new \Symfony\Component\Console\Terminal())->getWidth() - 2;
+        $terminalWidth  = (new \Symfony\Component\Console\Terminal())->getWidth() - 2;
         $maxHeaderWidth = strlen($headers[0]);
         foreach ($rows as $row) {
             $length = strlen($row[0]);
@@ -80,20 +80,26 @@ class ErrorsConsoleStyle extends \Symfony\Component\Console\Style\SymfonyStyle
         }
 
         $wrap = static function ($rows) use ($terminalWidth, $maxHeaderWidth) {
-            return array_map(static function ($row) use ($terminalWidth, $maxHeaderWidth) {
-                return array_map(static function ($s) use ($terminalWidth, $maxHeaderWidth) {
-                    if ($terminalWidth > $maxHeaderWidth + 5) {
-                        return wordwrap(
-                            $s,
-                            $terminalWidth - $maxHeaderWidth - 5,
-                            "\n",
-                            true
-                        );
-                    }
+            return array_map(
+                static function ($row) use ($terminalWidth, $maxHeaderWidth) {
+                    return array_map(
+                        static function ($s) use ($terminalWidth, $maxHeaderWidth) {
+                            if ($terminalWidth > $maxHeaderWidth + 5) {
+                                return wordwrap(
+                                    $s,
+                                    $terminalWidth - $maxHeaderWidth - 5,
+                                    "\n",
+                                    true
+                                );
+                            }
 
-                    return $s;
-                }, $row);
-            }, $rows);
+                            return $s;
+                        },
+                        $row
+                    );
+                },
+                $rows
+            );
         };
 
         parent::table($headers, $wrap($rows));
@@ -151,4 +157,5 @@ class ErrorsConsoleStyle extends \Symfony\Component\Console\Style\SymfonyStyle
         }
         parent::progressFinish();
     }
+
 }

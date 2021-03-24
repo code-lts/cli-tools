@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace CodeLts\CliTools\Tests;
 
@@ -11,6 +11,7 @@ use CodeLts\CliTools\File\FileWriter;
 
 class FileTest extends AbstractTestCase
 {
+
     public function testReadWriteFile(): void
     {
         $fileName = (string) tempnam(sys_get_temp_dir(), 'code-lts-cli-tools');
@@ -40,4 +41,5 @@ class FileTest extends AbstractTestCase
         }
         FileWriter::write('/', '');
     }
+
 }

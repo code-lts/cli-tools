@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 /*
  * (c) Copyright (c) 2016-2020 Ondřej Mirtes <ondrej@mirtes.cz>
  *
@@ -23,7 +25,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-declare(strict_types=1);
 
 namespace CodeLts\CliTools\ErrorFormatter;
 
@@ -49,24 +50,29 @@ class TeamcityErrorFormatter implements ErrorFormatter
 
     public function formatErrors(AnalysisResult $analysisResult, Output $output): int
     {
-        $result = '';
-        $fileSpecificErrors = $analysisResult->getFileSpecificErrors();
+        $result                = '';
+        $fileSpecificErrors    = $analysisResult->getFileSpecificErrors();
         $notFileSpecificErrors = $analysisResult->getNotFileSpecificErrors();
-        $warnings = $analysisResult->getWarnings();
+        $warnings              = $analysisResult->getWarnings();
 
         if (count($fileSpecificErrors) === 0 && count($notFileSpecificErrors) === 0 && count($warnings) === 0) {
             return 0;
         }
 
-        $result .= $this->createTeamcityLine('inspectionType', [
+        $result .= $this->createTeamcityLine(
+            'inspectionType',
+            [
             'id' => 'cli-tools',
             'name' => 'cli-tools',
             'category' => 'cli-tools',
             'description' => 'cli-tools Errors',
-        ]);
+            ]
+        );
 
         foreach ($fileSpecificErrors as $fileSpecificError) {
-            $result .= $this->createTeamcityLine('inspection', [
+            $result .= $this->createTeamcityLine(
+                'inspection',
+                [
                 'typeId' => 'cli-tools',
                 'message' => $fileSpecificError->getMessage(),
                 'file' => $fileSpecificError->getFile() !== null ? $this->relativePathHelper->getRelativePath($fileSpecificError->getFile()) : '?',
@@ -75,27 +81,34 @@ class TeamcityErrorFormatter implements ErrorFormatter
                 'SEVERITY' => 'ERROR',
                 'ignorable' => $fileSpecificError->canBeIgnored(),
                 'tip' => $fileSpecificError->getTip(),
-            ]);
+                ]
+            );
         }
 
         foreach ($notFileSpecificErrors as $notFileSpecificError) {
-            $result .= $this->createTeamcityLine('inspection', [
+            $result .= $this->createTeamcityLine(
+                'inspection',
+                [
                 'typeId' => 'cli-tools',
                 'message' => $notFileSpecificError,
                 // the file is required
                 'file' => '.',
                 'SEVERITY' => 'ERROR',
-            ]);
+                ]
+            );
         }
 
         foreach ($warnings as $warning) {
-            $result .= $this->createTeamcityLine('inspection', [
+            $result .= $this->createTeamcityLine(
+                'inspection',
+                [
                 'typeId' => 'cli-tools',
                 'message' => $warning,
                 // the file is required
                 'file' => '.',
                 'SEVERITY' => 'WARNING',
-            ]);
+                ]
+            );
         }
 
         $output->writeRaw($result);
@@ -137,4 +150,5 @@ class TeamcityErrorFormatter implements ErrorFormatter
         ];
         return (string) preg_replace(array_keys($replacements), array_values($replacements), $string);
     }
+
 }

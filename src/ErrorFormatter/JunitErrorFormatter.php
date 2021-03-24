@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 /*
  * (c) Copyright (c) 2016-2020 Ondřej Mirtes <ondrej@mirtes.cz>
  *
@@ -23,7 +25,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-declare(strict_types=1);
 
 namespace CodeLts\CliTools\ErrorFormatter;
 
@@ -50,7 +51,7 @@ class JunitErrorFormatter implements ErrorFormatter
         AnalysisResult $analysisResult,
         Output $output
     ): int {
-        $result = '<?xml version="1.0" encoding="UTF-8"?>';
+        $result  = '<?xml version="1.0" encoding="UTF-8"?>';
         $result .= sprintf(
             '<testsuite failures="%d" name="cli-tools" tests="%d" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/junit-team/junit5/r5.5.1/platform-tests/src/test/resources/jenkins-junit.xsd">',
             $analysisResult->getTotalErrorsCount(),
@@ -64,7 +65,7 @@ class JunitErrorFormatter implements ErrorFormatter
             }
 
             $fileName = $this->relativePathHelper->getRelativePath($file);
-            $result .= $this->createTestCase(
+            $result  .= $this->createTestCase(
                 sprintf('%s:%s', $fileName, (string) $fileSpecificError->getLine()),
                 'ERROR',
                 $this->escape($fileSpecificError->getMessage())
@@ -121,4 +122,5 @@ class JunitErrorFormatter implements ErrorFormatter
     {
         return htmlspecialchars($string, ENT_XML1 | ENT_COMPAT, 'UTF-8');
     }
+
 }

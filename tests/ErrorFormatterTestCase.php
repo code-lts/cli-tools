@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 /*
  * (c) Copyright (c) 2016-2020 Ondřej Mirtes <ondrej@mirtes.cz>
  *
@@ -23,7 +25,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-declare(strict_types=1);
 
 namespace CodeLts\CliTools\Tests;
 
@@ -68,7 +69,7 @@ abstract class ErrorFormatterTestCase extends \CodeLts\CliTools\Tests\AbstractTe
     {
         if ($this->output === null) {
             $errorConsoleStyle = new ErrorsConsoleStyle(new StringInput(''), $this->getOutputStream());
-            $this->output = new SymfonyOutput($this->getOutputStream(), new SymfonyStyle($errorConsoleStyle));
+            $this->output      = new SymfonyOutput($this->getOutputStream(), new SymfonyStyle($errorConsoleStyle));
         }
 
         return $this->output;
@@ -92,23 +93,35 @@ abstract class ErrorFormatterTestCase extends \CodeLts\CliTools\Tests\AbstractTe
             throw new \Exception('Test case error');
         }
 
-        $fileErrors = array_slice([
+        $fileErrors = array_slice(
+            [
             new Error('Foo', self::DIRECTORY_PATH . '/folder with unicode 😃/file name with "spaces" and unicode 😃.php', 4),
             new Error('Foo', self::DIRECTORY_PATH . '/foo.php', 1),
             new Error("Bar\nBar2", self::DIRECTORY_PATH . '/foo.php', 5),
             new Error("Bar\nBar2", self::DIRECTORY_PATH . '/folder with unicode 😃/file name with "spaces" and unicode 😃.php', 2),
-        ], 0, $numFileErrors);
+            ],
+            0,
+            $numFileErrors
+        );
 
-        $genericErrors = array_slice([
+        $genericErrors = array_slice(
+            [
             'first generic error',
             'second generic error',
-        ], 0, $numGenericErrors);
+            ],
+            0,
+            $numGenericErrors
+        );
 
-        $warnings = array_slice([
+        $warnings = array_slice(
+            [
             'first warning',
             'second 😃 warning',
             '3rd warning !',
-        ], 0, $numWarnings);
+            ],
+            0,
+            $numWarnings
+        );
 
         return new AnalysisResult(
             $fileErrors,
@@ -120,10 +133,14 @@ abstract class ErrorFormatterTestCase extends \CodeLts\CliTools\Tests\AbstractTe
 
     private function rtrimMultiline(string $output): string
     {
-        $result = array_map(static function (string $line): string {
-            return rtrim($line, " \r\n");
-        }, explode("\n", $output));
+        $result = array_map(
+            static function (string $line): string {
+                return rtrim($line, " \r\n");
+            },
+            explode("\n", $output)
+        );
 
         return implode("\n", $result);
     }
+
 }

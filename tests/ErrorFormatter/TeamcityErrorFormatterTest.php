@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 /*
  * (c) Copyright (c) 2016-2020 Ondřej Mirtes <ondrej@mirtes.cz>
  *
@@ -23,8 +25,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
-declare(strict_types=1);
 
 namespace CodeLts\CliTools\Tests\ErrorFormatter;
 
@@ -126,15 +126,24 @@ class TeamcityErrorFormatterTest extends ErrorFormatterTestCase
         string $expected
     ): void {
         $relativePathHelper = new FuzzyRelativePathHelper(new NullRelativePathHelper(), self::DIRECTORY_PATH);
-        $formatter = new TeamcityErrorFormatter(
+        $formatter          = new TeamcityErrorFormatter(
             $relativePathHelper
         );
 
-        $this->assertSame($exitCode, $formatter->formatErrors(
-            $this->getAnalysisResult($numFileErrors, $numGenericErrors),
-            $this->getOutput()
-        ), sprintf('%s: response code do not match', $message));
+        $this->assertSame(
+            $exitCode,
+            $formatter->formatErrors(
+                $this->getAnalysisResult($numFileErrors, $numGenericErrors),
+                $this->getOutput()
+            ),
+            sprintf('%s: response code do not match', $message)
+        );
 
-        $this->assertEquals($expected, $this->getOutputContent(), sprintf('%s: output do not match', $message));
+        $this->assertEquals(
+            $expected,
+            $this->getOutputContent(),
+            sprintf('%s: output do not match', $message)
+        );
     }
+
 }

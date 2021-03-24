@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 /*
  * (c) Copyright (c) 2016-2020 Ondřej Mirtes <ondrej@mirtes.cz>
  *
@@ -23,7 +25,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-declare(strict_types=1);
 
 namespace CodeLts\CliTools\Symfony;
 
@@ -52,7 +53,7 @@ class SymfonyOutput implements Output
         OutputStyle $style
     ) {
         $this->symfonyOutput = $symfonyOutput;
-        $this->style = $style;
+        $this->style         = $style;
     }
 
     public function writeFormatted(string $message): void
@@ -89,4 +90,5 @@ class SymfonyOutput implements Output
     {
         return $this->symfonyOutput->isDecorated();
     }
+
 }

@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace CodeLts\CliTools\Tests;
 
@@ -85,4 +85,5 @@ class OutputFormatTest extends ErrorFormatterTestCase
         $outputContent = $this->getOutputContent();
         $this->assertNotEmpty($outputContent);
     }
+
 }

@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace CodeLts\CliTools;
 
@@ -22,16 +22,16 @@ use CodeLts\CliTools\File\SimpleRelativePathHelper;
 
 class OutputFormat
 {
-    public const OUTPUT_FORMAT_RAW = 'raw';
-    public const OUTPUT_FORMAT_RAW_TEXT = 'rawtext';
-    public const OUTPUT_FORMAT_JSON = 'json';
+    public const OUTPUT_FORMAT_RAW         = 'raw';
+    public const OUTPUT_FORMAT_RAW_TEXT    = 'rawtext';
+    public const OUTPUT_FORMAT_JSON        = 'json';
     public const OUTPUT_FORMAT_JSON_PRETTY = 'prettyJson';
-    public const OUTPUT_FORMAT_JUNIT = 'junit';
-    public const OUTPUT_FORMAT_TABLE = 'table';
-    public const OUTPUT_FORMAT_CHECKSTYLE = 'checkstyle';
-    public const OUTPUT_FORMAT_GITLAB = 'gitlab';
-    public const OUTPUT_FORMAT_GITHUB = 'github';
-    public const OUTPUT_FORMAT_TEAMCITY = 'teamcity';
+    public const OUTPUT_FORMAT_JUNIT       = 'junit';
+    public const OUTPUT_FORMAT_TABLE       = 'table';
+    public const OUTPUT_FORMAT_CHECKSTYLE  = 'checkstyle';
+    public const OUTPUT_FORMAT_GITLAB      = 'gitlab';
+    public const OUTPUT_FORMAT_GITHUB      = 'github';
+    public const OUTPUT_FORMAT_TEAMCITY    = 'teamcity';
 
     public const VALID_OUTPUT_FORMATS = [
         OutputFormat::OUTPUT_FORMAT_RAW,
@@ -139,4 +139,5 @@ class OutputFormat
 
         throw new FormatNotFoundException($outputFormat);
     }
+
 }

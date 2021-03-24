@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 /*
  * (c) Copyright (c) 2016-2020 Ondřej Mirtes <ondrej@mirtes.cz>
  *
@@ -23,11 +25,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-declare(strict_types=1);
 
 namespace CodeLts\CliTools;
-
-use CodeLts\CliTools\Error;
 
 class AnalysisResult
 {
@@ -71,10 +70,10 @@ class AnalysisResult
             }
         );
 
-        $this->fileSpecificErrors = $fileSpecificErrors;
+        $this->fileSpecificErrors    = $fileSpecificErrors;
         $this->notFileSpecificErrors = $notFileSpecificErrors;
-        $this->internalErrors = $internalErrors;
-        $this->warnings = $warnings;
+        $this->internalErrors        = $internalErrors;
+        $this->warnings              = $warnings;
     }
 
     public function hasErrors(): bool
@@ -128,4 +127,5 @@ class AnalysisResult
     {
         return count($this->internalErrors) > 0;
     }
+
 }

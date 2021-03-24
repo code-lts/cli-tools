@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 /*
  * (c) Copyright (c) 2016-2020 Ondřej Mirtes <ondrej@mirtes.cz>
  *
@@ -23,7 +25,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-declare(strict_types=1);
 
 namespace CodeLts\CliTools\ErrorFormatter;
 
@@ -52,7 +53,7 @@ class GithubErrorFormatter implements ErrorFormatter
         RelativePathHelper $relativePathHelper,
         TableErrorFormatter $tableErrorformatter
     ) {
-        $this->relativePathHelper = $relativePathHelper;
+        $this->relativePathHelper  = $relativePathHelper;
         $this->tableErrorformatter = $tableErrorformatter;
     }
 
@@ -66,9 +67,12 @@ class GithubErrorFormatter implements ErrorFormatter
                 'line' => $fileSpecificError->getLine(),
                 'col' => 0,
             ];
-            array_walk($metas, static function (&$value, string $key): void {
-                $value = sprintf('%s=%s', $key, (string) $value);
-            });
+            array_walk(
+                $metas,
+                static function (&$value, string $key): void {
+                    $value = sprintf('%s=%s', $key, (string) $value);
+                }
+            );
 
             $message = $fileSpecificError->getMessage();
             // newlines need to be encoded
@@ -105,4 +109,5 @@ class GithubErrorFormatter implements ErrorFormatter
 
         return $analysisResult->hasErrors() ? 1 : 0;
     }
+
 }

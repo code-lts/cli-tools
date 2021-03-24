@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 /*
  * (c) Copyright (c) 2016-2020 Ondřej Mirtes <ondrej@mirtes.cz>
  *
@@ -23,7 +25,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-declare(strict_types=1);
 
 namespace CodeLts\CliTools\Tests\ErrorFormatter;
 
@@ -234,10 +235,14 @@ class JsonErrorFormatterTest extends ErrorFormatterTestCase
     ): void {
         $formatter = new JsonErrorFormatter(true);
 
-        $this->assertSame($exitCode, $formatter->formatErrors(
-            $this->getAnalysisResult($numFileErrors, $numGenericErrors),
-            $this->getOutput()
-        ), $message);
+        $this->assertSame(
+            $exitCode,
+            $formatter->formatErrors(
+                $this->getAnalysisResult($numFileErrors, $numGenericErrors),
+                $this->getOutput()
+            ),
+            $message
+        );
 
         $this->assertJsonStringEqualsJsonString($expected, $this->getOutputContent());
     }
@@ -261,11 +266,16 @@ class JsonErrorFormatterTest extends ErrorFormatterTestCase
     ): void {
         $formatter = new JsonErrorFormatter(false);
 
-        $this->assertSame($exitCode, $formatter->formatErrors(
-            $this->getAnalysisResult($numFileErrors, $numGenericErrors),
-            $this->getOutput()
-        ), sprintf('%s: response code do not match', $message));
+        $this->assertSame(
+            $exitCode,
+            $formatter->formatErrors(
+                $this->getAnalysisResult($numFileErrors, $numGenericErrors),
+                $this->getOutput()
+            ),
+            sprintf('%s: response code do not match', $message)
+        );
 
         $this->assertJsonStringEqualsJsonString($expected, $this->getOutputContent(), sprintf('%s: JSON do not match', $message));
     }
+
 }

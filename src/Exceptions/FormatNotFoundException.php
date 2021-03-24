@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace CodeLts\CliTools\Exceptions;
 
@@ -24,4 +24,5 @@ class FormatNotFoundException extends \Exception
     {
         return null;
     }
+
 }
