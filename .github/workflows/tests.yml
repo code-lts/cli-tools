@@ -20,8 +20,7 @@ jobs:
               uses: shivammathur/setup-php@v2
               with:
                   php-version: ${{ matrix.php-version }}
-                  extensions: posix, mbstring
-                  coverage: pcov
+                  coverage: xdebug
                   tools: composer:v2
             - name: Cache module
               uses: actions/cache@v2
