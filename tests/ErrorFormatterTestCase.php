@@ -49,6 +49,15 @@ abstract class ErrorFormatterTestCase extends \CodeLts\CliTools\Tests\AbstractTe
     /** @var Output|null */
     private $output = null;
 
+    protected function getTableDecoration(): string
+    {
+        if (PHP_MAJOR_VERSION === 7 && PHP_MINOR_VERSION === 1) {
+            return '------ -----------------------------------------------------------------';
+        }
+
+        return '------ -------------------------------------------------------------------';
+    }
+
     private function getOutputStream(): StreamOutput
     {
         if (PHP_VERSION_ID >= 80000 && DIRECTORY_SEPARATOR === '\\') {

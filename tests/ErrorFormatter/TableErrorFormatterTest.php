@@ -41,6 +41,8 @@ class TableErrorFormatterTest extends ErrorFormatterTestCase
      */
     public function dataFormatterOutputProvider(): iterable
     {
+        $dashLine = $this->getTableDecoration();
+
         yield [
             'No errors',
             0,
@@ -57,11 +59,11 @@ class TableErrorFormatterTest extends ErrorFormatterTestCase
             1,
             1,
             0,
-            ' ------ -------------------------------------------------------------------
+            ' ' . $dashLine . '
   Line   folder with unicode 😃/file name with "spaces" and unicode 😃.php
- ------ -------------------------------------------------------------------
+ ' . $dashLine . '
   4      Foo
- ------ -------------------------------------------------------------------
+ ' . $dashLine . '
 
  [ERROR] Found 1 error
 
@@ -89,13 +91,13 @@ class TableErrorFormatterTest extends ErrorFormatterTestCase
             1,
             4,
             0,
-            ' ------ -------------------------------------------------------------------
+            ' ' . $dashLine . '
   Line   folder with unicode 😃/file name with "spaces" and unicode 😃.php
- ------ -------------------------------------------------------------------
+ ' . $dashLine . '
   2      Bar
          Bar2
   4      Foo
- ------ -------------------------------------------------------------------
+ ' . $dashLine . '
 
  ------ ---------
   Line   foo.php
@@ -132,13 +134,13 @@ class TableErrorFormatterTest extends ErrorFormatterTestCase
             1,
             4,
             2,
-            ' ------ -------------------------------------------------------------------
+            ' ' . $dashLine . '
   Line   folder with unicode 😃/file name with "spaces" and unicode 😃.php
- ------ -------------------------------------------------------------------
+ ' . $dashLine . '
   2      Bar
          Bar2
   4      Foo
- ------ -------------------------------------------------------------------
+ ' . $dashLine . '
 
  ------ ---------
   Line   foo.php
