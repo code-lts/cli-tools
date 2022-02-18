@@ -3,7 +3,7 @@
 declare(strict_types = 1);
 
 /*
- * (c) Copyright (c) 2016-2020 Ondřej Mirtes <ondrej@mirtes.cz>
+ * (c) Copyright (c) 2016-2022 Ondřej Mirtes <ondrej@mirtes.cz>
  *
  * This source file is subject to the MIT license.
  *
@@ -45,21 +45,21 @@ class GithubErrorFormatter implements ErrorFormatter
     private $relativePathHelper;
 
     /**
-     * @var TableErrorFormatter
+     * @var ErrorFormatter
      */
-    private $tableErrorformatter;
+    private $errorFormatter;
 
     public function __construct(
         RelativePathHelper $relativePathHelper,
-        TableErrorFormatter $tableErrorformatter
+        ErrorFormatter $errorFormatter
     ) {
         $this->relativePathHelper  = $relativePathHelper;
-        $this->tableErrorformatter = $tableErrorformatter;
+        $this->errorFormatter = $errorFormatter;
     }
 
     public function formatErrors(AnalysisResult $analysisResult, Output $output): int
     {
-        $this->tableErrorformatter->formatErrors($analysisResult, $output);
+        $this->errorFormatter->formatErrors($analysisResult, $output);
 
         foreach ($analysisResult->getFileSpecificErrors() as $fileSpecificError) {
             $metas = [
