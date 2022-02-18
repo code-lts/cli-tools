@@ -3,7 +3,7 @@
 declare(strict_types = 1);
 
 /*
- * (c) Copyright (c) 2016-2020 Ondřej Mirtes <ondrej@mirtes.cz>
+ * (c) Copyright (c) 2016-2021 Ondřej Mirtes <ondrej@mirtes.cz>
  *
  * This source file is subject to the MIT license.
  *
@@ -98,7 +98,7 @@ abstract class ErrorFormatterTestCase extends \CodeLts\CliTools\Tests\AbstractTe
 
     protected function getAnalysisResult(int $numFileErrors, int $numGenericErrors, int $numWarnings = 0): AnalysisResult
     {
-        if ($numFileErrors > 4 || $numFileErrors < 0 || $numGenericErrors > 2 || $numGenericErrors < 0) {
+        if ($numFileErrors > 5 || $numFileErrors < 0 || $numGenericErrors > 2 || $numGenericErrors < 0) {
             throw new \Exception('Test case error');
         }
 
@@ -108,6 +108,7 @@ abstract class ErrorFormatterTestCase extends \CodeLts\CliTools\Tests\AbstractTe
             new Error('Foo', self::DIRECTORY_PATH . '/foo.php', 1),
             new Error("Bar\nBar2", self::DIRECTORY_PATH . '/foo.php', 5),
             new Error("Bar\nBar2", self::DIRECTORY_PATH . '/folder with unicode 😃/file name with "spaces" and unicode 😃.php', 2),
+            new Error("Bar\nBar2", self::DIRECTORY_PATH . '/foo.php', null),
             ],
             0,
             $numFileErrors

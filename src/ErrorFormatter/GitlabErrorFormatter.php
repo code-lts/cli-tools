@@ -3,7 +3,7 @@
 declare(strict_types = 1);
 
 /*
- * (c) Copyright (c) 2016-2020 Ondřej Mirtes <ondrej@mirtes.cz>
+ * (c) Copyright (c) 2016-2021 Ondřej Mirtes <ondrej@mirtes.cz>
  *
  * This source file is subject to the MIT license.
  *
@@ -72,7 +72,7 @@ class GitlabErrorFormatter implements ErrorFormatter
                 'location' => [
                     'path' => $this->relativePathHelper->getRelativePath($file),
                     'lines' => [
-                        'begin' => $fileSpecificError->getLine(),
+                        'begin' => $fileSpecificError->getLine() ?? 0,
                     ],
                 ],
             ];

@@ -10,7 +10,7 @@ class Error
     protected $message;
     /** @var string|null */
     protected $file;
-    /** @var int */
+    /** @var int|null */
     protected $line;
     /** @var int */
     protected $severity;
@@ -29,7 +29,7 @@ class Error
     public function __construct(
         string $message,
         ?string $file,
-        int $line,
+        ?int $line,
         int $severity = Error::LEVEL_ERROR,
         ?string $tip = null
     ) {
@@ -50,7 +50,7 @@ class Error
         return $this->file;
     }
 
-    public function getLine(): int
+    public function getLine(): ?int
     {
         return $this->line;
     }

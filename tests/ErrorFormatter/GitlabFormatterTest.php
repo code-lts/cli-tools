@@ -3,7 +3,7 @@
 declare(strict_types = 1);
 
 /*
- * (c) Copyright (c) 2016-2020 Ondřej Mirtes <ondrej@mirtes.cz>
+ * (c) Copyright (c) 2016-2021 Ondřej Mirtes <ondrej@mirtes.cz>
  *
  * This source file is subject to the MIT license.
  *
@@ -134,6 +134,69 @@ class GitlabFormatterTest extends ErrorFormatterTestCase
     }
 ]',
         ];
+		yield [
+			'Multiple file errors, including error with line=null',
+			1,
+			5,
+			0,
+			'[
+    {
+        "description": "Bar\nBar2",
+        "fingerprint": "034b4afbfb347494c14e396ed8327692f58be4cd27e8aff5f19f4194934db7c9",
+        "severity": "major",
+        "location": {
+            "path": "with space/and unicode 😃/project/folder with unicode 😃/file name with \"spaces\" and unicode 😃.php",
+            "lines": {
+                "begin": 2
+            }
+        }
+    },
+    {
+        "description": "Foo",
+        "fingerprint": "e82b7e1f1d4255352b19ecefa9116a12f129c7edb4351cf2319285eccdb1565e",
+        "severity": "major",
+        "location": {
+            "path": "with space/and unicode 😃/project/folder with unicode 😃/file name with \"spaces\" and unicode 😃.php",
+            "lines": {
+                "begin": 4
+            }
+        }
+    },
+    {
+        "description": "Bar\nBar2",
+        "fingerprint": "52d22d9e64bd6c6257b7a0d170ed8c99482043aeedd68c52bac081a80da9800a",
+        "severity": "major",
+        "location": {
+            "path": "with space/and unicode \ud83d\ude03/project/foo.php",
+            "lines": {
+                "begin": 0
+            }
+        }
+    },
+    {
+        "description": "Foo",
+        "fingerprint": "93c79740ed8c6fbaac2087e54d6f6f67fc0918e3ff77840530f32e19857ef63c",
+        "severity": "major",
+        "location": {
+            "path": "with space/and unicode \ud83d\ude03/project/foo.php",
+            "lines": {
+                "begin": 1
+            }
+        }
+    },
+    {
+        "description": "Bar\nBar2",
+        "fingerprint": "829f6c782152fdac840b39208c5b519d18e51bff2c601b6197812fffb8bcd9ed",
+        "severity": "major",
+        "location": {
+            "path": "with space/and unicode \ud83d\ude03/project/foo.php",
+            "lines": {
+                "begin": 5
+            }
+        }
+    }
+]',
+		];
 
         yield [
             'Multiple generic errors',
