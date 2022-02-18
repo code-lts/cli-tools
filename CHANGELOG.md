@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.x.x] - YYYY-MM-DD
 
+## [1.5.0] - YYYY-MM-DD
+
+- Allow more versions of symfony/console (`^5|^6`)
+- GithubErrorFormatter > Allow any ErrorFormatter
+- Assure Gitlab reports have integer line properties
+- Make `Error` class `line` property nullable
+- GitLab 13.x expects severity field in code quality reports
+
 ## [1.4.0] - 2021-03-24
 
 - Upgrade `ondram/ci-detector` to 4.0
