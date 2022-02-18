@@ -65,6 +65,7 @@ class TableErrorFormatterTest extends ErrorFormatterTestCase
   4      Foo
  ' . $dashLine . '
 
+
  [ERROR] Found 1 error
 
 ',
@@ -80,6 +81,7 @@ class TableErrorFormatterTest extends ErrorFormatterTestCase
  -- ---------------------
      first generic error
  -- ---------------------
+
 
  [ERROR] Found 1 error
 
@@ -123,6 +125,7 @@ class TableErrorFormatterTest extends ErrorFormatterTestCase
      first generic error
      second generic error
  -- ----------------------
+
 
  [ERROR] Found 2 errors
 

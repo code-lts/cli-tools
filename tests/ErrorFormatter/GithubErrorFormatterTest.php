@@ -66,6 +66,7 @@ class GithubErrorFormatterTest extends ErrorFormatterTestCase
   4      Foo
  ' . $dashLine . '
 
+
  [ERROR] Found 1 error
 
 ::error file=folder with unicode 😃/file name with "spaces" and unicode 😃.php,line=4,col=0::Foo
@@ -82,6 +83,7 @@ class GithubErrorFormatterTest extends ErrorFormatterTestCase
  -- ---------------------
      first generic error
  -- ---------------------
+
 
  [ERROR] Found 1 error
 
@@ -130,6 +132,7 @@ class GithubErrorFormatterTest extends ErrorFormatterTestCase
      first generic error
      second generic error
  -- ----------------------
+
 
  [ERROR] Found 2 errors
 
