@@ -63,8 +63,7 @@ class TableErrorFormatterTest extends ErrorFormatterTestCase
   Line   folder with unicode 😃/file name with "spaces" and unicode 😃.php
  ' . $dashLine . '
   4      Foo
- ' . $dashLine . '
-
+ ' . $dashLine . $this->getEndTable() . '
 
  [ERROR] Found 1 error
 
@@ -81,8 +80,7 @@ class TableErrorFormatterTest extends ErrorFormatterTestCase
  -- ---------------------
      first generic error
  -- ---------------------
-
-
+' . $this->getEndTable() . '
  [ERROR] Found 1 error
 
 ',
@@ -125,8 +123,7 @@ class TableErrorFormatterTest extends ErrorFormatterTestCase
      first generic error
      second generic error
  -- ----------------------
-
-
+' . $this->getEndTable() . '
  [ERROR] Found 2 errors
 
 ',
