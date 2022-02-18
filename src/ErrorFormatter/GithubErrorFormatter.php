@@ -53,8 +53,8 @@ class GithubErrorFormatter implements ErrorFormatter
         RelativePathHelper $relativePathHelper,
         ErrorFormatter $errorFormatter
     ) {
-        $this->relativePathHelper  = $relativePathHelper;
-        $this->errorFormatter = $errorFormatter;
+        $this->relativePathHelper = $relativePathHelper;
+        $this->errorFormatter     = $errorFormatter;
     }
 
     public function formatErrors(AnalysisResult $analysisResult, Output $output): int

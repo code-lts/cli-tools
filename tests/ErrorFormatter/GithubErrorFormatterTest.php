@@ -130,7 +130,7 @@ class GithubErrorFormatterTest extends ErrorFormatterTestCase
      first generic error
      second generic error
  -- ----------------------
-'  . $this->getEndTable() . '
+' . $this->getEndTable() . '
  [ERROR] Found 2 errors
 
 ::error ::first generic error

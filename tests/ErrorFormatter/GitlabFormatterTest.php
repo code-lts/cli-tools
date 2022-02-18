@@ -140,12 +140,12 @@ class GitlabFormatterTest extends ErrorFormatterTestCase
     }
 ]',
         ];
-		yield [
-			'Multiple file errors, including error with line=null',
-			1,
-			5,
-			0,
-			'[
+        yield [
+            'Multiple file errors, including error with line=null',
+            1,
+            5,
+            0,
+            '[
     {
         "description": "Bar\nBar2",
         "fingerprint": "034b4afbfb347494c14e396ed8327692f58be4cd27e8aff5f19f4194934db7c9",
@@ -202,7 +202,7 @@ class GitlabFormatterTest extends ErrorFormatterTestCase
         }
     }
 ]',
-		];
+        ];
 
         yield [
             'Multiple generic errors',
