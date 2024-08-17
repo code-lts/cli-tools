@@ -2,12 +2,13 @@
 
 declare(strict_types = 1);
 
-namespace CodeLts\CliTools\Tests;
+namespace CodeLts\CliTools\Tests\Unit;
 
 use CodeLts\CliTools\ErrorFormatter\ErrorFormatter;
 use CodeLts\CliTools\Exceptions\FormatNotFoundException;
 use CodeLts\CliTools\File\NullRelativePathHelper;
 use CodeLts\CliTools\OutputFormat;
+use CodeLts\CliTools\Tests\ErrorFormatterTestCase;
 
 class OutputFormatTest extends ErrorFormatterTestCase
 {

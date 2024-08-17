@@ -2,12 +2,13 @@
 
 declare(strict_types = 1);
 
-namespace CodeLts\CliTools\Tests;
+namespace CodeLts\CliTools\Tests\Unit;
 
 use CodeLts\CliTools\File\CouldNotReadFileException;
 use CodeLts\CliTools\File\CouldNotWriteFileException;
 use CodeLts\CliTools\File\FileReader;
 use CodeLts\CliTools\File\FileWriter;
+use CodeLts\CliTools\Tests\AbstractTestCase;
 
 class FileTest extends AbstractTestCase
 {
