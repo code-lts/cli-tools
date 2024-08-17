@@ -39,9 +39,9 @@ class TableErrorFormatterTest extends ErrorFormatterTestCase
     /**
      * @return iterable<array>
      */
-    public function dataFormatterOutputProvider(): iterable
+    public static function dataFormatterOutputProvider(): iterable
     {
-        $dashLine = $this->getTableDecoration();
+        $dashLine = self::getTableDecoration();
 
         yield [
             'No errors',
@@ -63,7 +63,7 @@ class TableErrorFormatterTest extends ErrorFormatterTestCase
   Line   folder with unicode 😃/file name with "spaces" and unicode 😃.php
  ' . $dashLine . '
   4      Foo
- ' . $dashLine . $this->getEndTable() . '
+ ' . $dashLine . self::getEndTable() . '
 
  [ERROR] Found 1 error
 
@@ -80,7 +80,7 @@ class TableErrorFormatterTest extends ErrorFormatterTestCase
  -- ---------------------
      first generic error
  -- ---------------------
-' . $this->getEndTable() . '
+' . self::getEndTable() . '
  [ERROR] Found 1 error
 
 ',
@@ -123,7 +123,7 @@ class TableErrorFormatterTest extends ErrorFormatterTestCase
      first generic error
      second generic error
  -- ----------------------
-' . $this->getEndTable() . '
+' . self::getEndTable() . '
  [ERROR] Found 2 errors
 
 ',

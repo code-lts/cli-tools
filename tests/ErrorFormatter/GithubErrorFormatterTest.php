@@ -40,9 +40,9 @@ class GithubErrorFormatterTest extends ErrorFormatterTestCase
     /**
      * @return iterable<array>
      */
-    public function dataFormatterOutputProvider(): iterable
+    public static function dataFormatterOutputProvider(): iterable
     {
-        $dashLine = $this->getTableDecoration();
+        $dashLine = self::getTableDecoration();
 
         yield [
             'No errors',
@@ -64,7 +64,7 @@ class GithubErrorFormatterTest extends ErrorFormatterTestCase
   Line   folder with unicode 😃/file name with "spaces" and unicode 😃.php
  ' . $dashLine . '
   4      Foo
- ' . $dashLine . $this->getEndTable() . '
+ ' . $dashLine . self::getEndTable() . '
 
  [ERROR] Found 1 error
 
@@ -82,7 +82,7 @@ class GithubErrorFormatterTest extends ErrorFormatterTestCase
  -- ---------------------
      first generic error
  -- ---------------------
-' . $this->getEndTable() . '
+' . self::getEndTable() . '
  [ERROR] Found 1 error
 
 ::error ::first generic error
@@ -130,7 +130,7 @@ class GithubErrorFormatterTest extends ErrorFormatterTestCase
      first generic error
      second generic error
  -- ----------------------
-' . $this->getEndTable() . '
+' . self::getEndTable() . '
  [ERROR] Found 2 errors
 
 ::error ::first generic error

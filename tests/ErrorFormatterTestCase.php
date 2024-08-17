@@ -49,7 +49,7 @@ abstract class ErrorFormatterTestCase extends \CodeLts\CliTools\Tests\AbstractTe
     /** @var Output|null */
     private $output = null;
 
-    protected function getEndTable(): string
+    protected static function getEndTable(): string
     {
         if (PHP_MAJOR_VERSION === 7 && PHP_MINOR_VERSION === 1) {
             return '';
@@ -58,7 +58,7 @@ abstract class ErrorFormatterTestCase extends \CodeLts\CliTools\Tests\AbstractTe
         return "\n";
     }
 
-    protected function getTableDecoration(): string
+    protected static function getTableDecoration(): string
     {
         if (PHP_MAJOR_VERSION === 7 && PHP_MINOR_VERSION === 1) {
             return '------ -----------------------------------------------------------------';

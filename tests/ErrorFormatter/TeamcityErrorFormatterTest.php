@@ -39,7 +39,7 @@ class TeamcityErrorFormatterTest extends ErrorFormatterTestCase
     /**
      * @return iterable<array>
      */
-    public function dataFormatterOutputProvider(): iterable
+    public static function dataFormatterOutputProvider(): iterable
     {
         yield [
             'No errors',

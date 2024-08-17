@@ -19,7 +19,7 @@ class OutputFormatTest extends ErrorFormatterTestCase
     /**
      * @return array[]
      */
-    public function dataProviderFormatsNames(): array
+    public static function dataProviderFormatsNames(): array
     {
         $formats = [];
         foreach (OutputFormat::VALID_OUTPUT_FORMATS as $format) {
