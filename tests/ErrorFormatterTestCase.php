@@ -51,19 +51,11 @@ abstract class ErrorFormatterTestCase extends \CodeLts\CliTools\Tests\AbstractTe
 
     protected static function getEndTable(): string
     {
-        if (PHP_MAJOR_VERSION === 7 && PHP_MINOR_VERSION === 1) {
-            return '';
-        }
-
         return "\n";
     }
 
     protected static function getTableDecoration(): string
     {
-        if (PHP_MAJOR_VERSION === 7 && PHP_MINOR_VERSION === 1) {
-            return '------ -----------------------------------------------------------------';
-        }
-
         return '------ -------------------------------------------------------------------';
     }
 
