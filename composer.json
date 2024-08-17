@@ -23,7 +23,7 @@
         {
             "name": "William Desportes",
             "email": "williamdes@wdes.fr",
-            "homepage": "https://william.wdes.fr"
+            "homepage": "https://williamdes.eu"
         },
         {
             "name": "Ondřej Mirtes",
@@ -32,10 +32,10 @@
         }
     ],
     "scripts": {
-        "test": "./vendor/bin/phpunit",
-        "phpstan": "./vendor/bin/phpstan",
-        "phpcs": "./vendor/bin/phpcs",
-        "phpcbf": "./vendor/bin/phpcbf"
+        "test": "@php ./vendor/bin/phpunit",
+        "phpstan": "@php ./vendor/bin/phpstan",
+        "phpcs": "@php ./vendor/bin/phpcs",
+        "phpcbf": "@php ./vendor/bin/phpcbf"
     },
     "require": {
         "php": "^7.1 || ^8.0",
