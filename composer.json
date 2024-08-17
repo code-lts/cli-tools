@@ -56,5 +56,10 @@
         "psr-4": {
             "CodeLts\\CliTools\\Tests\\": "tests/"
         }
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
     }
 }
