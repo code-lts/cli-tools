@@ -8,40 +8,40 @@ parameters:
 		-
 			message: "#^Method CodeLts\\\\CliTools\\\\Tests\\\\ErrorFormatter\\\\CheckstyleErrorFormatterTest\\:\\:dataFormatterOutputProvider\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
-			path: tests/ErrorFormatter/CheckstyleErrorFormatterTest.php
+			path: tests/Unit/ErrorFormatter/CheckstyleErrorFormatterTest.php
 
 		-
 			message: "#^Method CodeLts\\\\CliTools\\\\Tests\\\\ErrorFormatter\\\\GithubErrorFormatterTest\\:\\:dataFormatterOutputProvider\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
-			path: tests/ErrorFormatter/GithubErrorFormatterTest.php
+			path: tests/Unit/ErrorFormatter/GithubErrorFormatterTest.php
 
 		-
 			message: "#^Method CodeLts\\\\CliTools\\\\Tests\\\\ErrorFormatter\\\\GitlabFormatterTest\\:\\:dataFormatterOutputProvider\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
-			path: tests/ErrorFormatter/GitlabFormatterTest.php
+			path: tests/Unit/ErrorFormatter/GitlabFormatterTest.php
 
 		-
 			message: "#^Method CodeLts\\\\CliTools\\\\Tests\\\\ErrorFormatter\\\\JsonErrorFormatterTest\\:\\:dataFormatterOutputProvider\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
-			path: tests/ErrorFormatter/JsonErrorFormatterTest.php
+			path: tests/Unit/ErrorFormatter/JsonErrorFormatterTest.php
 
 		-
 			message: "#^Method CodeLts\\\\CliTools\\\\Tests\\\\ErrorFormatter\\\\RawErrorFormatterTest\\:\\:dataFormatterOutputProvider\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
-			path: tests/ErrorFormatter/RawErrorFormatterTest.php
+			path: tests/Unit/ErrorFormatter/RawErrorFormatterTest.php
 
 		-
 			message: "#^Method CodeLts\\\\CliTools\\\\Tests\\\\ErrorFormatter\\\\TableErrorFormatterTest\\:\\:dataFormatterOutputProvider\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
-			path: tests/ErrorFormatter/TableErrorFormatterTest.php
+			path: tests/Unit/ErrorFormatter/TableErrorFormatterTest.php
 
 		-
 			message: "#^Method CodeLts\\\\CliTools\\\\Tests\\\\ErrorFormatter\\\\TeamcityErrorFormatterTest\\:\\:dataFormatterOutputProvider\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
-			path: tests/ErrorFormatter/TeamcityErrorFormatterTest.php
+			path: tests/Unit/ErrorFormatter/TeamcityErrorFormatterTest.php
 
 		-
-			message: "#^Method CodeLts\\\\CliTools\\\\Tests\\\\OutputFormatTest\\:\\:dataProviderFormatsNames\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: "#^Method CodeLts\\\\CliTools\\\\Tests\\\\Unit\\\\OutputFormatTest\\:\\:dataProviderFormatsNames\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
-			path: tests/OutputFormatTest.php
+			path: tests/Unit/OutputFormatTest.php
 
