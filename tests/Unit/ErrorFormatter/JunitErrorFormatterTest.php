@@ -161,6 +161,7 @@ class JunitErrorFormatterTest extends ErrorFormatterTestCase
      *
      * @dataProvider dataFormatterOutputProvider
      */
+    #[\PHPUnit\Framework\Attributes\DataProvider('dataFormatterOutputProvider')]
     public function testFormatErrors(
         int $exitCode,
         int $numFileErrors,

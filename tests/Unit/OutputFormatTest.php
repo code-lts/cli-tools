@@ -32,6 +32,7 @@ class OutputFormatTest extends ErrorFormatterTestCase
     /**
      * @dataProvider dataProviderFormatsNames
      */
+    #[\PHPUnit\Framework\Attributes\DataProvider('dataProviderFormatsNames')]
     public function testValidFormats(string $formatName): void
     {
         $this->assertTrue(OutputFormat::checkOutputFormatIsValid($formatName));
@@ -40,6 +41,7 @@ class OutputFormatTest extends ErrorFormatterTestCase
     /**
      * @dataProvider dataProviderFormatsNames
      */
+    #[\PHPUnit\Framework\Attributes\DataProvider('dataProviderFormatsNames')]
     public function testInValidFormats(string $formatName): void
     {
         $formatName = 'foo' . $formatName;
@@ -54,6 +56,7 @@ class OutputFormatTest extends ErrorFormatterTestCase
     /**
      * @dataProvider dataProviderFormatsNames
      */
+    #[\PHPUnit\Framework\Attributes\DataProvider('dataProviderFormatsNames')]
     public function testGetFormatterForChoice(string $formatName): void
     {
         $this->assertInstanceOf(ErrorFormatter::class, OutputFormat::getFormatterForChoice($formatName, new NullRelativePathHelper()));
@@ -62,6 +65,7 @@ class OutputFormatTest extends ErrorFormatterTestCase
     /**
      * @dataProvider dataProviderFormatsNames
      */
+    #[\PHPUnit\Framework\Attributes\DataProvider('dataProviderFormatsNames')]
     public function testGetFormatterForChoiceInvalid(string $formatName): void
     {
         $formatName = 'foo' . $formatName;
@@ -75,6 +79,7 @@ class OutputFormatTest extends ErrorFormatterTestCase
     /**
      * @dataProvider dataProviderFormatsNames
      */
+    #[\PHPUnit\Framework\Attributes\DataProvider('dataProviderFormatsNames')]
     public function testFormatterForChoice(string $formatName): void
     {
         OutputFormat::displayUserChoiceFormat(

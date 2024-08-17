@@ -321,6 +321,7 @@ class GitlabFormatterTest extends ErrorFormatterTestCase
      * @param string $expected
      *
      */
+    #[\PHPUnit\Framework\Attributes\DataProvider('dataFormatterOutputProvider')]
     public function testFormatErrors(
         string $message,
         int $exitCode,

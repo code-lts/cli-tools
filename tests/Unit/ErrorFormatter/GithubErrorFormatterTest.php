@@ -187,6 +187,7 @@ class GithubErrorFormatterTest extends ErrorFormatterTestCase
      * @param int    $numGenericErrors
      * @param string $expected
      */
+    #[\PHPUnit\Framework\Attributes\DataProvider('dataFormatterOutputProvider')]
     public function testFormatErrors(
         string $message,
         int $exitCode,
