@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.x.x] - YYYY-MM-DD
 
+- Drop support for PHP 7.1
+
 ## [1.5.0] - 2022-02-18
 
 - Allow more versions of symfony/console (`^5|^6`)
