@@ -19,14 +19,14 @@ jobs:
                 include:
                     - { php-version: 'nightly', composer-options: '--ignore-platform-req=php', experimental: true, os: ubuntu-latest }
         steps:
-            - uses: actions/checkout@v4
+            - uses: actions/checkout@v6
             - name: Use php ${{ matrix.php-version }}
               uses: shivammathur/setup-php@v2
               with:
                   php-version: ${{ matrix.php-version }}
                   coverage: pcov
             - name: Cache module
-              uses: actions/cache@v4
+              uses: actions/cache@v5
               with:
                   path: ~/.composer/cache/
                   key: composer-cache
