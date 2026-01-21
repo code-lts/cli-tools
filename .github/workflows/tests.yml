@@ -31,7 +31,7 @@ jobs:
                   path: ~/.composer/cache/
                   key: composer-cache
             - name: Install dependencies
-              run: composer install --no-interaction ${{ matrix.composer-options }}
+              run: composer update --no-interaction ${{ matrix.composer-options }}
             - name: Run php tests
               run: composer run test
             - name: Send coverage
