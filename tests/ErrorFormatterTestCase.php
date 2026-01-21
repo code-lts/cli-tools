@@ -61,7 +61,7 @@ abstract class ErrorFormatterTestCase extends \CodeLts\CliTools\Tests\AbstractTe
 
     private function getOutputStream(): StreamOutput
     {
-        if (PHP_VERSION_ID >= 80000 && DIRECTORY_SEPARATOR === '\\') {
+        if (DIRECTORY_SEPARATOR === '\\') {
             $this->markTestSkipped('Skipped because of https://github.com/symfony/symfony/issues/37508');
         }
         if ($this->outputStream === null) {
