@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.x.x] - YYYY-MM-DD
 
+## [1.7.0] - 2026-01-22
+
+- Drop support for PHP 7.3, PHP 7.4, PHP 8.0 (no source code changes)
+- Support PHPUnit 12
+- Support Symfony Console v8
+- Drop support for PHPUnit 8 and 9
+- Drop support for Symfony Console v5
+
 ## [1.6.0] - 2024-08-20
 
 - Drop support for PHP 7.1
